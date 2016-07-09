@@ -6,5 +6,4 @@ class StaticPagesController < ApplicationController
   def findalease
   end
 
-
 end

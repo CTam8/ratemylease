@@ -1,0 +1,60 @@
+// Place all the styles related to the StaticPages controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+@import url('http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,700italic,400italic');
+.image {
+  position:relative;
+  width: 100%;
+}
+
+h2{
+  position:absolute;
+  top:450px;
+  left:0;
+  width:100%;
+}
+
+h2 span {
+   color: white;
+   font: bold 24px/45px Helvetica, Sans-Serif;
+   letter-spacing: -1px;
+   background: rgb(0, 0, 0); /* fallback color */
+   background: rgba(0, 0, 0, 0.7);
+   padding: 10px;
+}
+
+h1{
+  position:absolute;
+  top:300px;
+  left:0;
+  width:100%;
+}
+
+h1 span {
+   color: white;
+   font: bold 60px/90px Helvetica, Sans-Serif;
+   letter-spacing: -1px;
+   background: rgb(0, 0, 0); /* fallback color */
+   background: rgba(0, 0, 0, 0.7);
+   padding: 10px;
+}
+
+h3 {
+  color:#575757;
+  font: bold 45px/90px Helvetica, Sans-Serif;
+  leter-spacing:-1px;
+  text-align:center;
+  top:0;
+  left:0;
+  width:100%;
+
+}
+h4 {
+  color:#575757;
+  font: bold 25px/90px Helvetica, Sans-Serif;
+  leter-spacing:-1px;
+  position:relative;
+  top:0;
+  left:0;
+  width:100%;
+}

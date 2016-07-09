@@ -1,18 +1,17 @@
 <% provide(:title, "Log In") %>
 <!DOCTYPE html>
 <html>
+<h1>Log In</h1>
+
 <head>
   <title>
     <% yield(:title) %> | Rate My Lease
   </title>
 </head>
 
-<h2>Log In</h2>
-
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-
   <div>
-    <span>Username or Email</span><br />
+    <span><b>Username or Email</b></span><br />
     <%= f.text_field :login %></p>
   </div>
 
@@ -34,5 +33,5 @@
 
 <% end %>
 
-<%= render "devise/shared/links" %>
+<%= link_to "Sign Up", signup_path %>
 </html>
