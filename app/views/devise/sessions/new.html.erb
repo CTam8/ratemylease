@@ -1,37 +1,55 @@
 <% provide(:title, "Log In") %>
 <!DOCTYPE html>
 <html>
-<h1>Log In</h1>
 
+<h4>Log in to Rate My Lease</h4>
 <head>
   <title>
     <% yield(:title) %> | Rate My Lease
   </title>
 </head>
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div>
-    <span><b>Username or Email</b></span><br />
-    <%= f.text_field :login %></p>
-  </div>
 
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "off" %>
-  </div>
+<%= form_for(resource, as: resource_name, url: session_path(resource_name), :html => {:class => 'form-horizontal' }) do |f| %>
 
-  <% if devise_mapping.rememberable? -%>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+<form class="form-horizontal">
+  <div class="form-group">
+    <div class="col-md-3 col-centered">
+      <div class="center-block">
+        <input type="text" class="form-control" name="user[login]" placeholder="Username or Email">
+      </div>
+      <!-- <%= f.text_field :login, placeholder: "Username or Email" %> -->
     </div>
-  <% end -%>
-
-  <div class="actions">
-    <%= f.submit "Log in" %>
   </div>
+  <div class="form-group">
+    <div class="col-md-3 col-centered">
+      <input type="password" class="form-control" name="user[password]" placeholder="Password">
+      <!-- <%= f.password_field :password, placeholder: "Password", autocomplete: "off" %> -->
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-md-3 col-centered">
+      <div class="checkbox">
+        <%= f.label :remember_me do %>
+          <%= f.check_box :remember_me %> <%= t('.remember_me', :default => "Remember me") %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="col-md-3 col-centered">
+          <button type="submit" class="submit btn primary-btn btn-block">Log in</button>
+      <!-- <%= f.submit "Log in" %> -->
+    </div>
+  </div>
+
+  <div class="form-group">
+    <div class="col-md-3 col-centered">
+      <span>Don't have an account? <%= link_to "Sign Up", signup_path %></span>
+    </div>
+  </div>
+</form>
 
 <% end %>
-
-<%= link_to "Sign Up", signup_path %>
 </html>

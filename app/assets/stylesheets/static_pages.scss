@@ -8,7 +8,7 @@
 }
 
 h2{
-  position:absolute;
+  position:top;
   top:450px;
   left:0;
   width:100%;
@@ -25,7 +25,7 @@ h2 span {
 
 h1{
   position:absolute;
-  top:300px;
+  top:200px;
   left:0;
   width:100%;
 }
@@ -42,19 +42,20 @@ h1 span {
 h3 {
   color:#575757;
   font: bold 45px/90px Helvetica, Sans-Serif;
-  leter-spacing:-1px;
+  letter-spacing:-1px;
   text-align:center;
-  top:0;
-  left:0;
   width:100%;
 
 }
 h4 {
   color:#575757;
   font: bold 25px/90px Helvetica, Sans-Serif;
-  leter-spacing:-1px;
+  letter-spacing:-1px;
+  text-align:center;
   position:relative;
-  top:0;
-  left:0;
   width:100%;
+}
+.col-centered{
+float: none;
+margin: 0 auto;
 }
