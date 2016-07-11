@@ -1,0 +1,96 @@
+<% provide(:title, "New Lease") %>
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<title> <%= full_title(yield(:title)) %> | Rate My Lease </title>
+	</head>
+	<body>
+		<h3> Create a Lease </h3>
+		<form>
+			<%= form_for(:session, url: login_path) do |f| %>
+
+			<%= f.text_field :streetnumber, placeholder: "Street Number", class: 'form-control' %>
+
+			<%= f.text_field :street, placeholder:"Street", class: 'form-control' %>
+
+			<%= f.text_field :postalcode, placeholder:"Postal Code", class: 'form-control' %>
+
+      <%= f.text_field :city, placeholder:"City", class: 'form-control' %>
+
+			<label for="Provinces">Province  </label>
+			<select id= "Provinces" name="Provinces" class="ProvinceBoxSize">Province</>
+				<option value="Alberta">Alberta</option>
+				<option value="British Columbia">British Columbia</option>
+				<option value="Saskatchewan">Saskatchewan</option>
+				<option value="Manitoba">Manitoba</option>
+				<option value="New Brunswick">New Brunswick</option>
+				<option value="Newfoundland and Labrador">Newfoundland and Labrador</option>
+				<option value="Prince Edward Island">Prince Edward Island</option>
+				<option value="Nova Scotia">Nova Scotia</option>
+				<option value="Ontario">Ontario</option>
+				<option value="Quebec">Quebec</option>
+			</select><br>
+
+			<label for ="School">University </label>
+			<select id="School" name="School" class= "SchoolBoxSize"> School</>
+				<option value="Ryerson">Ryerson University</option>
+				<option value="Queen's">Queen's University</option>
+			</select>
+
+			 <br>
+
+			<label for="Bathrooms">Bathrooms</label>
+			<select id="Bathrooms" name="Bathrooms" class="NumberBoxSize">
+				<option value="0">0</option>
+				<option value="1">1</option>
+				<option value="2">2</option>
+				<option value="3">3</option>
+				<option value="4">4</option>
+			</select>
+
+			<label for="Bedrooms">Bedrooms</label>
+			<select id="Bedrooms" name="Bedrooms" class="NumberBoxSize">
+				<option value="0">0</option>
+				<option value="1">1</option>
+				<option value="2">2</option>
+				<option value="3">3</option>
+				<option value="4">4</option>
+				<option value="5">5</option>
+				<option value="6">6</option>
+				<option value="7">7</option>
+				<option value="8">8</option>
+			</select>
+
+			<div class="checkbox" style= "margin-left: 20px">
+				<input id= "Utilities" type="checkbox" />
+				<label for="Utilities">Utilities</label>
+			</div><br>
+
+			<div class="action_btns">
+				<div class="one_half">
+					<%= f.submit "Submit", class: "btn btn-primary" %>
+				</div>
+			</div>
+			<% end %>
+		</form>
+		<!-- <div id="slider-wrapper">
+			<div id="slider">
+				<img id='propimg_0' class='sp' src='http://us.blizzard.com/static/_images/games/sc/wallpapers/wall1/wall1-1920x1200.jpg'alt=''width=400px; height=350px/></a>
+				<img id='propimg_1' class='sp' src='http://us.blizzard.com/static/_images/games/sc2/wallpapers/wall2/wall2-1024x768.jpg'alt=''width=400px; height=350px/></a>
+				<img id='propimg_2' class='sp' src='http://us.blizzard.com/static/_images/games/sc/wallpapers/wall2/wall2-1920x1200.jpg'alt=''width=400px; height=350px/></a>
+				<img id='propimg_3' class='sp' src='http://static.giantbomb.com/uploads/original/0/1468/184087-starcraft.png'alt=''width=400px; height=350px/></a>
+				<img id='propimg_4' class='sp' src='http://vignette3.wikia.nocookie.net/starcraft/images/c/cb/Screenshot_SC2_DevGame1.jpg/revision/latest?cb=20080511221659'alt=''width=400px; height=350px/></a>
+				<img id='propimg_5' class='sp' src='http://www.digiseller.ru/preview/115936/p1_50117174534290.JPG'alt=''width=400px; height=250px/></a>
+				<img id="button-previous" src="http://www.clker.com/cliparts/Z/n/k/Z/y/j/left-arrow-gray-hi.png">
+				<img id="button-next" src="https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-ios7-arrow-right-128.png">
+
+			</div>
+		</div> -->
+		<!-- <div class="tabs">
+			<ul class="tab-links">
+				<li class="active">
+					<a href="#tab1">Details</a>
+				</li> -->
+  </body>
+</html>

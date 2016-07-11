@@ -3,6 +3,8 @@ Rails.application.routes.draw do
   resources :users
 root 'static_pages#home'
 
+get 'lease', :to => 'lease#new'
+
 devise_scope :user do
   get "login", :to  => "devise/sessions#new"
   get "signup", :to  => "devise/registrations#new"
