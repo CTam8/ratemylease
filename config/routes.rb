@@ -1,16 +1,12 @@
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
   resources :users
 root 'static_pages#home'
 
 devise_scope :user do
-  get "login", :to  => "devise/sessions#new", :as => :new_user_session
+  get "login", :to  => "devise/sessions#new"
   get "signup", :to  => "devise/registrations#new"
+  delete 'sign_out', :to => 'devise/sessions#destroy'
 end
-
-delete 'sign_out', :to => 'devise/sessions#destroy', :as => :destroy_user_session
-
-
-devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
 
 end
