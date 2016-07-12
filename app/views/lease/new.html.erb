@@ -8,11 +8,7 @@
 	<body>
 		<h3> Create a Lease </h3>
 		<form>
-			<%= form_for(:session, url: login_path) do |f| %>
-
-			<%= f.text_field :streetnumber, placeholder: "Street Number", class: 'form-control' %>
-
-			<%= f.text_field :street, placeholder:"Street", class: 'form-control' %>
+			<%= form_for(:lease, url: login_path) do |f| %>
 
 			<%= f.text_field :postalcode, placeholder:"Postal Code", class: 'form-control' %>
 
