@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   validates :username, presence: true, uniqueness: { case_sensitive: false}
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :confirmable, :validatable, :authentication_keys => [:login]
-  devise :omniauthable, :omniauth_providers => [:facebook]
+  devise  :omniauthable, :omniauth_providers => [:facebook]
   #Authenticate using email or username
   def login=(login)
     @login = login
@@ -13,6 +13,7 @@ class User < ActiveRecord::Base
   where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
     user.provider = auth.provider
     user.email = auth.info.email
+    user.name = auth.info.name
     user.password = Devise.friendly_token[0,20]
     user.username = auth.info.username
   end
