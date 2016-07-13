@@ -8,9 +8,14 @@ class User < ActiveRecord::Base
     @login = login
   end
 
+  def self.find_for_oauth(auth)
+      find_or_create_by(uid: auth.uid, provider: auth.provider)
+    end
+
 def self.from_omniauth(auth)
   where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
     user.provider = auth.provider
+    user.uid = auth.uid
     user.email = auth.info.email
     user.password = Devise.friendly_token[0,20]
   end
