@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   #validates :username, presence: true, uniqueness: { case_sensitive: false}
   devise :database_authenticatable, :omniauthable, :registerable, :recoverable, :rememberable, :trackable, :confirmable, :validatable, :authentication_keys => [:login]
+  devise :omniauth_providers => [:facebook]
   #Authenticate using email or username
   def login=(login)
     @login = login
@@ -10,27 +11,31 @@ class User < ActiveRecord::Base
 
   def self.find_for_oauth(auth, signed_in_resource = nil)
     # Get the identity and user if they exist
-    identity = Identity.find_for_oauth(auth)
-    user = signed_in_resource ? signed_in_resource : identity.user
+    #identity = Identity.find_for_oauth(auth)
+    #user = signed_in_resource ? signed_in_resource : identity.user
 
     # Create the user if needed
-    if user.nil?
-      email_is_verified = auth.info.email && (auth.info.verified || auth.info.verified_email)
-      email = auth.info.email if email_is_verified
-      user = User.where(:email => email).first if email
-
-      # Create the user if it's a new registration
-      if user.nil?
+    #if user.nil?
+    #email_is_verified = auth.info.email && (auth.info.verified || auth.info.verified_email)
+    #  email = auth.info.email if email_is_verified
+    data = access_token.extra.raw_info
+      if user = User.where(:email => auth.info.email).first
+        user.skip_confirmation!
+        user.save!
+        user
+      else
         user = User.new(
-          name: auth.extra.raw_info.name,
-          #username: auth.info.nickname || auth.uid,
-          email: email ? email : "#{TEMP_EMAIL_PREFIX}-#{auth.uid}-#{auth.provider}.com",
-          password: Devise.friendly_token[0,20]
+          :name => auth.extra.raw_info.name,
+          #email: email ? email : "#{TEMP_EMAIL_PREFIX}-#{auth.uid}-#{auth.provider}.com",
+          :email => data.email,
+          #password: Devise.friendly_token[0,20]
+          :password => Devise.friendly_token[0,20], :type => 'social'
         )
         user.skip_confirmation!
         user.save!
+        user
       end
-    end
+    #end
 
     # Associate the identity with the user if needed
     if identity.user != user
@@ -50,6 +55,8 @@ def self.from_omniauth(auth)
     user.uid = auth.uid
     user.email = auth.info.email
     user.password = Devise.friendly_token[0,20]
+    user.skip_confirmation!
+    user.save!
   end
 end
 
