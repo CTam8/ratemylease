@@ -18,6 +18,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   alias_method :google_oauth2, :provider
   alias_method :facebook, :provider
 
+
   def failure
     redirect_to root_path
   end
