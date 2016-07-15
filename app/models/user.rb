@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   #validates :username, presence: true, uniqueness: { case_sensitive: false}
   devise :database_authenticatable, :omniauthable, :registerable, :recoverable, :rememberable, :trackable, :confirmable, :validatable, :authentication_keys => [:login]
-  devise :omniauth_providers => [:facebook]
+  devise :omniauth_providers => [:facebook, :google_oauth2]
   #Authenticate using email or username
   def login=(login)
     @login = login
@@ -44,6 +44,7 @@ def self.from_omniauth(auth)
   end
 end
 
+
 def self.new_with_session(params, session)
     super.tap do |user|
       if data = session["devise.facebook_data"] && session["devise.facebook_data"]["extra"]["raw_info"]
@@ -64,6 +65,7 @@ def self.new_with_session(params, session)
       where(conditions.to_h).first
     end
   end
+
 =begin
   validate :validate_username
 
