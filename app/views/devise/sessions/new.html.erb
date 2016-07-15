@@ -1,4 +1,5 @@
 <% provide(:title, "Log In") %>
+<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" />
 <!DOCTYPE html>
 <html>
 <h3>Log In</h3>
@@ -32,6 +33,12 @@
   </div>
 
 <% end %>
+
+<%= link_to user_facebook_omniauth_authorize_path do %>
+  <span class="icon"><i class="fa fa-facebook-square"></i></span> <span class="icon_title">| Continue with Facebook</span>
+<% end %>
+
+<br>
 
 <%= link_to "Sign Up", signup_path %>
 

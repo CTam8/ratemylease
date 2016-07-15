@@ -10,14 +10,6 @@ class User < ActiveRecord::Base
   end
 
   def self.find_for_oauth(auth, signed_in_resource = nil)
-    # Get the identity and user if they exist
-    #identity = Identity.find_for_oauth(auth)
-    #user = signed_in_resource ? signed_in_resource : identity.user
-
-    # Create the user if needed
-    #if user.nil?
-    #email_is_verified = auth.info.email && (auth.info.verified || auth.info.verified_email)
-    #  email = auth.info.email if email_is_verified
     data = access_token.extra.raw_info
       if user = User.where(:email => auth.info.email).first
         user.skip_confirmation!
@@ -35,19 +27,11 @@ class User < ActiveRecord::Base
         user.save!
         user
       end
-    #end
-
-    # Associate the identity with the user if needed
-    if identity.user != user
-      identity.user = user
-      identity.save!
-    end
-    user
   end
 
-  def email_verified?
-    self.email && self.email !~ TEMP_EMAIL_REGEX
-  end
+  #def email_verified?
+  #  self.email && self.email !~ TEMP_EMAIL_REGEX
+  #end
 
 def self.from_omniauth(auth)
   where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
