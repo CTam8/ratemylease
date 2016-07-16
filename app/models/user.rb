@@ -2,7 +2,6 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   #validates :username, presence: true, uniqueness: { case_sensitive: false}
-  has_many :username
   devise :database_authenticatable, :omniauthable, :registerable, :recoverable, :rememberable, :trackable, :confirmable, :validatable, :authentication_keys => [:login]
   devise :omniauth_providers => [:facebook, :google_oauth2]
   #Authenticate using email or username
@@ -13,6 +12,8 @@ class User < ActiveRecord::Base
   def self.find_for_oauth(auth, signed_in_resource = nil)
 
       if user = User.where(:email => auth.info.email).first
+        user.skip_confirmation!
+        user.save!
         user
       else
         user = User.new(provider: auth.provider,
