@@ -1,0 +1,23 @@
+<%= form_for @lease do |f| %>
+  <%= f.label :address %>
+  <%= f.text_field :address %>
+  <%= f.label :province %>
+  <%= f.text_field :province %>
+  <%= f.label :city %>
+  <%= f.text_field :city %>
+  <%= f.label :university %>
+  <%= f.text_field :university %>
+  <%= f.label :postalcode %>
+  <%= f.text_field :postalcode %>
+  <%= f.label :numberofbathrooms %>
+  <%= f.text_field :numberofbathrooms %>
+  <%= f.label :numberofbedrooms %>
+  <%= f.text_field :numberofbedrooms %>
+  <%= f.label :numberofparkingspots %>
+  <%= f.text_field :numberofparkingspots %>
+  <%= f.label :utilities %>
+  <%= f.check_box :utilities %>
+  <%= f.label :internet %>
+  <%= f.check_box :internet %>
+  <%= f.submit %>
+<% end %>

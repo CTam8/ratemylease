@@ -1,0 +1,2 @@
+module LeaseControllerHelper
+end

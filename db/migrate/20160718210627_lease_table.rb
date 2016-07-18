@@ -1,8 +1,6 @@
 class LeaseTable < ActiveRecord::Migration[5.0]
   def change
 
-    drop_table :leases
-
     create_table :leases do |t|
       t.string  :address
       t.string  :province
@@ -14,6 +12,8 @@ class LeaseTable < ActiveRecord::Migration[5.0]
       t.integer :numberofbathrooms
       t.integer :numberofbedrooms
       t.integer :numberofparkingspots
+      t.boolean :utilities
+      t.boolean :internet
       t.timestamps null: false
     end
 
