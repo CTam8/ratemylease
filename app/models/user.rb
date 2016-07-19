@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
 
   def self.find_for_oauth(auth, signed_in_resource = nil)
 
-      if user = User.where(:email => auth.info.email).first
+      if user = User.where(:email => auth.info.email).first()
         user.skip_confirmation!
         user.save!
         user
