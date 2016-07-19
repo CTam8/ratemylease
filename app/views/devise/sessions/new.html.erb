@@ -1,6 +1,11 @@
 <% provide(:title, "Log In") %>
+<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.6/css/font-awesome.min.css" />
 <!DOCTYPE html>
 <html>
+<<<<<<< HEAD
+=======
+<h3>Log In</h3>
+>>>>>>> facebook-auth
 
 <h4>Log in to Rate My Lease</h4>
 <head>
@@ -9,6 +14,14 @@
   </title>
 </head>
 
+<<<<<<< HEAD
+=======
+<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+  <div>
+    <span><b>Email</b></span><br />
+    <%= f.text_field :login %></p>
+  </div>
+>>>>>>> facebook-auth
 
 
 <div class="col-sm-4 col-sm-offset-4">
@@ -44,4 +57,19 @@
   </div>
 </div>
 
+<<<<<<< HEAD
+=======
+<%= link_to user_facebook_omniauth_authorize_path do %>
+  <span class="icon"><i class="fa fa-facebook-square"></i></span> <span class="icon_title">| Continue with Facebook</span>
+<% end %>
+<br>
+
+<%= link_to user_google_oauth2_omniauth_authorize_path do %>
+<span class="icon"><i class="fa fa-google-plus"></i></span> <span class="icon_title">| Continue with Google Plus</span> </a>
+<% end %>
+<br>
+
+<%= link_to "Sign Up", signup_path %>
+
+>>>>>>> facebook-auth
 </html>
