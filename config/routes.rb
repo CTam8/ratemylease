@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
 <<<<<<< HEAD
+<<<<<<< HEAD
   devise_for :users, :path => '', :path_names => { :sign_in => "login", :sign_up => "signup"}
+=======
+  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
+>>>>>>> facebook-auth
 =======
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
 >>>>>>> facebook-auth

@@ -3,6 +3,10 @@
 
 <!DOCTYPE html>
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+<h3>Create An Account</h3>
+>>>>>>> facebook-auth
 =======
 <h3>Create An Account</h3>
 >>>>>>> facebook-auth
@@ -59,6 +63,17 @@
 
 <<<<<<< HEAD
 =======
+  <!--<%= link_to "Sign in with Facebook", user_facebook_omniauth_authorize_path%>-->
+  <%= link_to user_facebook_omniauth_authorize_path do %>
+    <span class="icon"><i class="fa fa-facebook-square"></i></span> <span class="icon_title">| Continue with Facebook</span>
+  <% end %>
+
+  <br>
+
+<%= link_to user_google_oauth2_omniauth_authorize_path do %>
+  <span class="icon"><i class="fa fa-google-plus"></i></span> <span class="icon_title">| Continue with Google Plus</span> </a>
+  <% end %>
+
   <!--<%= link_to "Sign in with Facebook", user_facebook_omniauth_authorize_path%>-->
   <%= link_to user_facebook_omniauth_authorize_path do %>
     <span class="icon"><i class="fa fa-facebook-square"></i></span> <span class="icon_title">| Continue with Facebook</span>

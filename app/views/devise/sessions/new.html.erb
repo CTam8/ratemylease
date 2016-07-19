@@ -3,6 +3,10 @@
 <!DOCTYPE html>
 <html>
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+<h3>Log In</h3>
+>>>>>>> facebook-auth
 =======
 <h3>Log In</h3>
 >>>>>>> facebook-auth
@@ -69,7 +73,20 @@
 <% end %>
 <br>
 
+<%= link_to user_facebook_omniauth_authorize_path do %>
+  <span class="icon"><i class="fa fa-facebook-square"></i></span> <span class="icon_title">| Continue with Facebook</span>
+<% end %>
+<br>
+
+<%= link_to user_google_oauth2_omniauth_authorize_path do %>
+<span class="icon"><i class="fa fa-google-plus"></i></span> <span class="icon_title">| Continue with Google Plus</span> </a>
+<% end %>
+<br>
+
 <%= link_to "Sign Up", signup_path %>
 
+<<<<<<< HEAD
+>>>>>>> facebook-auth
+=======
 >>>>>>> facebook-auth
 </html>
