@@ -18,6 +18,7 @@ gem 'jbuilder',                '2.5.0'
 gem 'sdoc',                    '0.4.0', group: :doc
 gem 'net-ssh'
 gem 'devise', github: 'plataformatec/devise'
+gem 'simple_form'
 
 group :development, :test do
   gem 'sqlite3',     '1.3.9'

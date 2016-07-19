@@ -11,7 +11,7 @@
 
         <% if user_signed_in? %>
         <li>
-          <%= link_to "Lease", create_lease_path %>
+          <%= link_to "Create a Lease", new_lease_path %>
         </li>
         <li>
 					<%= link_to "Users", users_path %>
@@ -33,7 +33,7 @@
 				</li>
         <% else %>
           <li>
-            <%= link_to "Lease", create_lease_path %>
+            <%= link_to "Create a Lease", new_lease_path %>
           </li>
 
           <li>

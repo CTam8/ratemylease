@@ -1,23 +1,122 @@
-<%= form_for @lease do |f| %>
-  <%= f.label :address %>
-  <%= f.text_field :address %>
-  <%= f.label :province %>
-  <%= f.text_field :province %>
-  <%= f.label :city %>
-  <%= f.text_field :city %>
-  <%= f.label :university %>
-  <%= f.text_field :university %>
-  <%= f.label :postalcode %>
-  <%= f.text_field :postalcode %>
-  <%= f.label :numberofbathrooms %>
-  <%= f.text_field :numberofbathrooms %>
-  <%= f.label :numberofbedrooms %>
-  <%= f.text_field :numberofbedrooms %>
-  <%= f.label :numberofparkingspots %>
-  <%= f.text_field :numberofparkingspots %>
-  <%= f.label :utilities %>
-  <%= f.check_box :utilities %>
-  <%= f.label :internet %>
-  <%= f.check_box :internet %>
-  <%= f.submit %>
-<% end %>
+<% provide(:title, "New Lease") %>
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<title> <%= full_title(yield(:title)) %> | New Lease </title>
+
+	</head>
+	<body>
+		<h3> Create a Lease </h3>
+			<%= simple_form_for (@lease) do |f| %>
+
+			<%= f.input :address %>
+			<%= f.input :province, collection: Lease::PROVINCE %>
+			<%= f.input :city %>
+			<%= f.input :university %>
+			<%= f.input :postalcode, label: "Postal Code (Optional)" %>
+			<%= f.input :numberofbathrooms, :collection =>1..10, label:"# of Bathrooms" %>
+			<%= f.input :numberofbedrooms, :collection =>1..10, label:"# of Bedrooms" %>
+			<%= f.input :numberofparkingspots, :collection =>1..10, label:"# of Parking Spots" %>
+
+			<div class="checkbox" style= "margin-left: 20px">
+			<%= f.input :utilities, as: :radio_buttons %>
+			</div><br>
+
+			<div class="checkbox" style= "margin-left: 20px">
+			<%= f.input :internet, as: :radio_buttons %>
+			</div><br>
+
+
+
+			<div class="action_btns">
+				<div class="one_half">
+					<%= f.button :submit %>
+				</div>
+			</div><br>
+
+
+			<!-- <%= f.label "Address" %>
+			<%= f.text_field :address, class: 'form-control' %>
+
+      <label for="Provinces">Province  </label>
+      <select id= "Provinces" name="lease[province]" class="ProvinceBoxSize">Province</>
+        <option value="Alberta">Alberta</option>
+        <option value="British Columbia">British Columbia</option>
+        <option value="Saskatchewan">Saskatchewan</option>
+        <option value="Manitoba">Manitoba</option>
+        <option value="New Brunswick">New Brunswick</option>
+        <option value="Newfoundland and Labrador">Newfoundland and Labrador</option>
+        <option value="Prince Edward Island">Prince Edward Island</option>
+        <option value="Nova Scotia">Nova Scotia</option>
+        <option value="Ontario">Ontario</option>
+        <option value="Quebec">Quebec</option>
+      </select><br>
+
+			<%= f.label :city %>
+			<%= f.text_field :city, class: 'form-control' %>
+
+
+			<label for ="School">University </label>
+			<select id="School" name="lease[university]" class= "SchoolBoxSize"> School</>
+				<option value="Ryerson">Ryerson University</option>
+				<option value="Queen's">Queen's University</option>
+			</select>
+
+      <label for="postalcode">Postal Code</label>
+      <input id="postalcode" name="lease[postalcode]" type="text" /><br />
+
+      <label for="Bathrooms">Bathrooms</label>
+			<select id="Bathrooms" name="lease[numberofbathrooms]" class="NumberBoxSize">
+				<option value="0">0</option>
+				<option value="1">1</option>
+				<option value="2">2</option>
+				<option value="3">3</option>
+				<option value="4">4</option>
+			</select>
+
+      <label for="Bedrooms">Bedrooms</label>
+			<select id="Bedrooms" name="lease[numberofbedrooms]" class="NumberBoxSize">
+				<option value="0">0</option>
+				<option value="1">1</option>
+				<option value="2">2</option>
+				<option value="3">3</option>
+				<option value="4">4</option>
+				<option value="5">5</option>
+				<option value="6">6</option>
+				<option value="7">7</option>
+				<option value="8">8</option>
+			</select>
+
+      <label for="Bathrooms">Bathrooms</label>
+			<select id="Bathrooms" name="lease[numberofbathrooms]" class="NumberBoxSize">
+				<option value="0">0</option>
+				<option value="1">1</option>
+				<option value="2">2</option>
+				<option value="3">3</option>
+				<option value="4">4</option>
+        <option value="5">5</option>
+				<option value="6">6</option>
+			</select>
+
+      <div class="checkbox" style= "margin-left: 20px">
+        <label for="Utilities">Utilities</label>
+        <input id= "utilities" name="lease[utilities]" type="checkbox" />
+      </div><br>
+
+      <div class="checkbox" style= "margin-left: 20px">
+        <label for="Internet">Internet</label>
+        <input id= "internet" name="lease[internet]" type="checkbox" />
+      </div><br>
+
+      <div class="action_btns">
+				<div class="one_half">
+					<%= f.submit "Submit", class: "btn btn-primary" %>
+				</div>
+			</div><br> -->
+
+			<% end %>
+
+	</body>
+	</head>
+</html>

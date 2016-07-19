@@ -1,4 +1,5 @@
 class LeasesController < ApplicationController
+  # before_action :authenticate_user!, only: [:create, :new]
   def index
   end
 
@@ -8,12 +9,16 @@ class LeasesController < ApplicationController
 
   def create
     @lease = Lease.new(lease_params)
-    @lease.save
-    redirect_to @lease
+    if @lease.save
+      redirect_to @lease
+    else
+      flash[:danger] = @lease.errors.full_messages.to_sentence
+      render 'new'
+    end
   end
 
   def show
-    
+    @lease = Lease.find(params[:id])
   end
 
 private
