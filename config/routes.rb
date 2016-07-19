@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  devise_for :users, :path => '', :path_names => { :sign_in => "login", :sign_up => "signup"}
+  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
 
   resources :users
 
@@ -8,12 +8,16 @@ Rails.application.routes.draw do
     resources :reviews, except:[:index, :show]
   end
 
-root 'static_pages#home'
-get 'new_lease', :to => "leases#new"
+  root 'static_pages#home'
+  get 'new_lease', :to => "leases#new"
 
-devise_scope :user do
-  get "login", :to  => "devise/sessions#new"
-  get "signup", :to  => "devise/registrations#new"
-end
+
+  devise_scope :user do
+    get "login", :to  => "devise/sessions#new"
+    get "signup", :to  => "devise/registrations#new"
+    delete 'sign_out', :to => 'devise/sessions#destroy'
+  end
+
+  match '/users/:id/finish_signup' => 'users#finish_signup', via: [:get, :patch], :as => :finish_signup
 
 end

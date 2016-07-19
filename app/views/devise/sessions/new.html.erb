@@ -1,6 +1,9 @@
 <% provide(:title, "Log In") %>
+<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.6/css/font-awesome.min.css" />
 <!DOCTYPE html>
 <html>
+<h3>Log In</h3>
+
 
 <h4>Log in to Rate My Lease</h4>
 <head>
@@ -8,6 +11,8 @@
     <% yield(:title) %> | Rate My Lease
   </title>
 </head>
+
+<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
 
 
 
@@ -44,4 +49,16 @@
   </div>
 </div>
 
+<%= link_to user_facebook_omniauth_authorize_path do %>
+  <span class="icon"><i class="fa fa-facebook-square"></i></span> <span class="icon_title">| Continue with Facebook</span>
+<% end %>
+<br>
+
+<%= link_to user_google_oauth2_omniauth_authorize_path do %>
+  <span class="icon"><i class="fa fa-google-plus"></i></span> <span class="icon_title">| Continue with Google Plus</span> </a>
+<% end %>
+<br>
+
+<%= link_to "Sign Up", signup_path %>
+<% end %>
 </html>
