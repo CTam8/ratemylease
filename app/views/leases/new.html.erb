@@ -4,20 +4,40 @@
 <html>
 	<head>
 		<title> <%= full_title(yield(:title)) %> | New Lease </title>
-
 	</head>
 	<body>
 		<h3> Create a Lease </h3>
-			<%= simple_form_for (@lease) do |f| %>
+			<%= simple_form_for @lease,:html => { :class => 'well' }, url: leases_path do |f| %>
+			<% if @lease.errors.any? %>
+				<div id="error_explanation">
+					<span><%= pluralize(@lease.errors.count, "error") %> prohibited this lease from being saved:</span>
+					<ul>
+						<% @lease.errors.messages.each do |message| %>
+							<li>
+								<%= message.last.last.html_safe %>
+							</li>
+						<% end %>
+					</ul>
+				</div>
+			<% end %>
 
-			<%= f.input :address %>
-			<%= f.select :province, Lease::PROVINCE %>
-			<%= f.input :city %>
-			<%= f.input :university %>
-			<%= f.input :postalcode, label: "Postal Code (Optional)" %>
-			<%= f.input :numberofbathrooms, :collection =>1..10, label:"# of Bathrooms" %>
-			<%= f.input :numberofbedrooms, :collection =>1..10, label:"# of Bedrooms" %>
-			<%= f.input :numberofparkingspots, :collection =>1..10, label:"# of Parking Spots" %>
+			<%= f.input :address , error: false, :required => false %>
+
+			<%= f.label :province, "Province" %>
+			<%= f.select :province, Lease::PROVINCE, :include_blank => true, :required => false, error: false, input_html: { class: "has-error" }%>
+
+			<%= f.input :city, error: false, :required => false  %>
+			<%= f.input :university, error: false, :required => false  %>
+			<%= f.input :postalcode, label: "Postal Code (Optional)" , error: false %>
+
+			<%= f.label :numberofbathrooms, "# of Bathrooms" %>
+			<%= f.select :numberofbathrooms, 1..10, error: false, :required => false, :include_blank => true %>
+
+			<%= f.label :numberofbathrooms, "# of Bedrooms" %>
+			<%= f.select :numberofbedrooms, 1..10, error: false, :required => false,  :include_blank => true %>
+
+			<%= f.label :numberofparkingspots, "# of Parking Spots" %>
+			<%= f.select :numberofparkingspots, 0..10, :selected => "0"%>
 
 			<div class="checkbox" style= "margin-left: 20px">
 			<%= f.input :utilities, as: :radio_buttons %>
@@ -26,6 +46,8 @@
 			<div class="checkbox" style= "margin-left: 20px">
 			<%= f.input :internet, as: :radio_buttons %>
 			</div><br>
+
+			<%= f.input :image, as: :file %>
 
 			<div class="action_btns">
 				<div class="one_half">

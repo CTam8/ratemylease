@@ -13,7 +13,6 @@ class LeasesController < ApplicationController
     if @lease.save
       redirect_to @lease
     else
-      flash[:danger] = @lease.errors.full_messages.to_sentence
       render 'new'
     end
   end

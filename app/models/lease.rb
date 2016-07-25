@@ -2,23 +2,13 @@ class Lease < ApplicationRecord
 
   has_many :reviews
 
-  validates_presence_of :address
-  validates_presence_of :city
-  validates_presence_of :province
-  validates_presence_of :university
-  validates_presence_of :numberofbedrooms
-  validates_presence_of :numberofparkingspots
-  validates_presence_of :numberofbathrooms
+  validates_presence_of :address, :message => "Address can't be blank"
+  validates_presence_of :city, :message => "City can't be blank"
+  validates_presence_of :province, :message => "Province can't be blank"
+  validates_presence_of :university, :message => "University can't be blank"
+  validates_presence_of :numberofbedrooms, :message => "Number of Bedrooms can't be blank"
+  validates_presence_of :numberofbathrooms, :message => "Number of Bathrooms can't be blank"
 
-  # validates :province             , presence:true, length: { maximum: 25 }
-  # validates :city                 , presence:true, length: { maximum: 25 }
-  # validates :university           , presence:true, length: { maximum: 25 }
-  # Canadian_Postal_Code = /[ABCEGHJKLMNPRSTVXY]{1}\d{1}[A-Z]{1}[ -]?\d{1}[A-Z]{1}\d{1}/
-  # validates :postalcode           , presence:true, length: { maximum: 6 },
-  #                         format:  { with: Canadian_Postal_Code}
-  # validates :numberofbathrooms    , presence:true,  numericality: {only_integer: true }
-  # validates :numberofbedrooms     , presence:true,  numericality: {only_integer: true }
-  # validates :numberofparkingspots , presence:true,  numericality: {only_integer: true }
   PROVINCE = [
     ["Alberta"],
     ["British Columbia"],
@@ -31,5 +21,8 @@ class Lease < ApplicationRecord
     ["Quebec"],
     ["Saskatchewan"]
   ]
+
+  has_attached_file :image, styles: { medium: "400x600#>"}
+  validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
 
 end

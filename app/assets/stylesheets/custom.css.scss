@@ -146,6 +146,7 @@ input, textarea, select, .uneditable-input {
   @include box_sizing;
 }
 
+
 input {
   height: auto !important;
 }
@@ -166,6 +167,24 @@ input {
     color: $state-danger-text;
   }
 }
+
+.has-error .control-label,
+.has-error .help-block,
+.has-error .form-control-feedback {
+    color: red;
+}
+.has-error .form-control {
+  border-color: red
+}
+
+.dropdown-error {
+  @extend select;
+  .form-control {
+    border-color: red
+  }
+
+}
+
 /*Users index */
 .users {
   list-style: none;
