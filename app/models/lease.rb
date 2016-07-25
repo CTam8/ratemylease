@@ -3,8 +3,8 @@ class Lease < ApplicationRecord
   has_many :reviews
 
   validates_presence_of :address
-  validates_presence_of :province
   validates_presence_of :city
+  validates_presence_of :province
   validates_presence_of :university
   validates_presence_of :numberofbedrooms
   validates_presence_of :numberofparkingspots
@@ -19,18 +19,17 @@ class Lease < ApplicationRecord
   # validates :numberofbathrooms    , presence:true,  numericality: {only_integer: true }
   # validates :numberofbedrooms     , presence:true,  numericality: {only_integer: true }
   # validates :numberofparkingspots , presence:true,  numericality: {only_integer: true }
-
-
   PROVINCE = [
-    ['Alberta'],
-    ['British Columbia'],
-    ['Manitoba'],
-    ['New Brunswick'],
-    ['Newfoundland and Labrador'],
-    ['Nova Scotia'],
-    ['Ontario'],
-    ['Prince Edward Island'],
-    ['Quebec'],
-    ['Saskatchewan']
+    ["Alberta"],
+    ["British Columbia"],
+    ["Manitoba"],
+    ["New Brunswick"],
+    ["Newfoundland and Labrador"],
+    ["Nova Scotia"],
+    ["Ontario"],
+    ["Prince Edward Island"],
+    ["Quebec"],
+    ["Saskatchewan"]
   ]
+
 end

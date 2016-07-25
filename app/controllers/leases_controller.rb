@@ -1,6 +1,7 @@
 class LeasesController < ApplicationController
   # before_action :authenticate_user!, only: [:create, :new]
   def index
+    @lease = Lease.all
   end
 
   def new
@@ -19,6 +20,12 @@ class LeasesController < ApplicationController
 
   def show
     @lease = Lease.find(params[:id])
+    @reviews = Review.where(lease_id: @lease)
+    if @reviews.blank?
+      @avg_rating = 0
+    else
+      @avg_rating = @reviews.average(:rating).round(2)
+    end
   end
 
 private

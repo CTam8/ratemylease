@@ -11,7 +11,7 @@
 			<%= simple_form_for (@lease) do |f| %>
 
 			<%= f.input :address %>
-			<%= f.input :province, collection: Lease::PROVINCE %>
+			<%= f.select :province, Lease::PROVINCE %>
 			<%= f.input :city %>
 			<%= f.input :university %>
 			<%= f.input :postalcode, label: "Postal Code (Optional)" %>
@@ -26,8 +26,6 @@
 			<div class="checkbox" style= "margin-left: 20px">
 			<%= f.input :internet, as: :radio_buttons %>
 			</div><br>
-
-
 
 			<div class="action_btns">
 				<div class="one_half">

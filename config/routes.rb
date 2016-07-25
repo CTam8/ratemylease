@@ -10,6 +10,7 @@ Rails.application.routes.draw do
 
   root 'static_pages#home'
   get 'new_lease', :to => "leases#new"
+  get 'all_leases', :to => "leases#index"
 
 
   devise_scope :user do

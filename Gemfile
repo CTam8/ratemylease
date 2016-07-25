@@ -17,11 +17,13 @@ gem 'omniauth-google-oauth2',  '0.4.1'
 gem 'coffee-rails',            '4.2.1'
 gem 'jquery-rails',            '4.1.1'
 gem 'turbolinks',              '2.3.0'
+gem 'jquery-turbolinks'
 gem 'jbuilder',                '2.5.0'
 gem 'sdoc',                    '0.4.0', group: :doc
 gem 'net-ssh'
 gem 'devise', github: 'plataformatec/devise'
 gem 'simple_form'
+gem 'paperclip', '~> 5.0'
 
 group :development, :test do
   gem 'sqlite3',     '1.3.9'

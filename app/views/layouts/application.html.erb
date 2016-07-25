@@ -19,6 +19,14 @@
 
         <p class="notice"><%= notice %></p>
         <p class="alert"><%= alert %></p>
-
+        <script>
+        $('#star').raty({
+          path: '/assets/images',
+          readOnly: true,
+          score: function () {
+            return $(this).attr('data-score');
+          }
+        });
+        </script>
     </body>
 </html>
