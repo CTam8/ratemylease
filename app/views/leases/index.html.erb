@@ -2,18 +2,11 @@
 <html>
 <body>
   <% @lease.each do |lease| %>
-  <ul>
-  <li><%= lease.address %></li>
-  <li><%= lease.province %></li>
-  <li><%= lease.city %></li>
-  <li><%= lease.university %></li>
-  <li><%= lease.postalcode %></li>
-  <li><%= lease.numberofbathrooms %></li>
-  <li><%= lease.numberofbedrooms %></li>
-  <li><%= lease.numberofparkingspots %></li>
-  <li><%= lease.utilities %></li>
-  <li><%= lease.internet %></li>
-  </ul>
-  <% end %>
+  <div>
+    <%= lease.address %>
+    <%= link_to "Go to Lease", lease %>
+    <% end %>
+  </div>
+
 </body>
 </html>

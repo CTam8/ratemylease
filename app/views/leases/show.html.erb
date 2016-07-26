@@ -1,32 +1,77 @@
 <% provide(:title, @lease.address) %>
 <html>
-<body>
-  <ul>
-  <li><%= @lease.address %></li>
-  <li><%= @lease.province %></li>
-  <li><%= @lease.city %></li>
-  <li><%= @lease.university %></li>
-  <li><%= @lease.postalcode %></li>
-  <li><%= @lease.numberofbathrooms %></li>
-  <li><%= @lease.numberofbedrooms %></li>
-  <li><%= @lease.numberofparkingspots %></li>
-  <li><%= @lease.utilities %></li>
-  <li><%= @lease.internet %></li>
-  </ul>
-  <div>
-    <span id="star" data-score= <%= @avg_rating%> > </span>
+<div class="panel panel-default">
+  <div class="panel-body">
+    <div class="row">
+      <div class="col-md-4">
+        <div class="table-responsive">
+          <table class="table">
+            <tbody>
+              <tr>
+                <td><strong>Address</strong></td>
+                <td><%= @lease.address %></td>
+              </tr>
+              <tr>
+                <td><strong>Province</strong></td>
+                <td><%= @lease.province %></td>
+              </tr>
+              <tr>
+                <td><strong>City</strong></td>
+                <td><%= @lease.city %></td>
+              </tr>
+              <tr>
+                <td><strong>University</strong></td>
+                <td><%= @lease.university %></td>
+              </tr>
+              <tr>
+                <td><strong>Postal Code</strong></td>
+                <td><%= @lease.postalcode %></td>
+              </tr>
+              <tr>
+                <td><strong># of Bathrooms</strong></td>
+                <td><%= @lease.numberofbathrooms %></td>
+              </tr>
+              <tr>
+                <td><strong># of Bedrooms</strong></td>
+                <td><%= @lease.numberofbedrooms %></td>
+              </tr>
+              <tr>
+                <td><strong># of Parking Spots</strong></td>
+                <td><%= @lease.numberofparkingspots %></td>
+              </tr>
+              <tr>
+                <td><strong>Utilities</strong></td>
+                <td><%= @lease.utilities %></td>
+              </tr>
+              <tr>
+                <td><strong>Internet</strong></td>
+                <td><%= @lease.internet %></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="col-md-8">
+        <%= image_tag @lease.image.url(:medium) %>
+      </div>
+    </div>
   </div>
-
+  <%= link_to "Write a Review", new_lease_review_path(@lease),class: "btn col-md-7"%>
   <div>
+    <% if @reviews.blank? %>
+    <span>No reviews just yet, would you like to add the first?</span>
     <%= link_to "Write a Review", new_lease_review_path(@lease),class: "btn btn-small"%>
-
+    <% else %>
+      <% @reviews.each do |review| %>
+        <p>
+          User: <%= review.user.email %><br />
+          Comment: <%= review.comment %><br />
+          Rating: <%= review.rating %>
+        </p>
+      <% end %>
+    <% end %>
   </div>
-  <h4>Reviews</h4>
-  <% @reviews.each do |review| %>
-    <p>
-      Comment: <%= review.comment %><br />
-      Rating: <%= review.rating %>
-    </p>
-  <% end %>
+</div>
+
 </body>
 </html>

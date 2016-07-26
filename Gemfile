@@ -25,6 +25,7 @@ gem 'devise', github: 'plataformatec/devise'
 gem 'simple_form'
 gem 'paperclip', '~> 5.0'
 
+
 group :development, :test do
   gem 'sqlite3',     '1.3.9'
   gem 'byebug',      '3.4.0'

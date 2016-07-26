@@ -1,5 +1,5 @@
 class LeasesController < ApplicationController
-  # before_action :authenticate_user!, only: [:create, :new]
+  before_action :authenticate_user!, only: [:create, :new]
   def index
     @lease = Lease.all
   end
