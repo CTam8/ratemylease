@@ -14,7 +14,6 @@
 //= require_tree .
 //= require jquery
 //= require jquery_ujs
-//= require jquery.raty.js
 //= require jquery.leanModal.min.js
 //= require bootstrap-sprockets
 
