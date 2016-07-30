@@ -1,6 +1,6 @@
 <script type="text/javascript" src="/assets/jquery-1.11.0.min.js"></script>
 <script type="text/javascript" src="/assets/jquery.leanModal.min.js"></script>
-<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" />
 <html>
@@ -18,6 +18,15 @@
         <li>
           <%= link_to "All Leases", all_leases_path %>
         </li>
+        <li>
+          <%= link_to "Profile", current_user%>
+        </li>
+        <li>
+          <%= link_to "Settings", edit_user_path(current_user) %>
+        </li>
+        <li>
+        <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
+        </li>
         <li class="dropdown">
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown"> Account <span class="caret"></span> </a>
 					<ul class="dropdown-menu">
@@ -34,6 +43,12 @@
             </li>
 					</ul>
 				</li>
+        <script>
+          var $j = jQuery.noConflict();
+          $j(document).ready(function(){
+            $j(".dropdown-toggle").dropdown();
+          });
+        </script>
         <% else %>
         <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
           <li>
