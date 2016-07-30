@@ -7,6 +7,15 @@ class ApplicationController < ActionController::Base
 
   protected
 
+  #before_action :add_parameters_to_user, if: :devise_controller?
+
+  #def add_parameters_to_user
+  #  devise_parameter_sanitizer.for(:signup)<< :first_name
+  #  devise_parameter_sanitizer.for(:signup)<< :last_name
+  #  devise_parameter_sanitizer.for(:account_update)<< :first_name
+  #  devise_parameter_sanitizer.for(:account_update)<< :last_name
+  #end
+
   def ensure_signup_complete
       # Ensure we don't go into an infinite loop
       return if action_name == 'finish_signup'
