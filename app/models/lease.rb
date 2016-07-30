@@ -1,5 +1,6 @@
 class Lease < ApplicationRecord
 
+  searchkick
   has_many :reviews
 
   validates_presence_of :address, :message => "Address can't be blank"
@@ -24,5 +25,12 @@ class Lease < ApplicationRecord
 
   has_attached_file :image, styles: { medium: "400x600#>"}
   validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
+
+  geocoded_by :full_address
+  after_validation :geocode
+
+  def full_address
+    [address,city,province,postalcode].join(', ')
+  end
 
 end

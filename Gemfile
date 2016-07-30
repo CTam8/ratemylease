@@ -24,7 +24,8 @@ gem 'net-ssh'
 gem 'devise', github: 'plataformatec/devise'
 gem 'simple_form'
 gem 'paperclip', '~> 5.0'
-
+gem 'geocoder'
+gem 'searchkick'
 
 group :development, :test do
   gem 'sqlite3',     '1.3.9'

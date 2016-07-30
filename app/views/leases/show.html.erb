@@ -56,23 +56,35 @@
       </div>
     </div>
   </div>
-  <%= link_to "Write a Review", new_lease_review_path(@lease),class: "btn col-md-7"%>
-  <div>
-    <% if @reviews.blank? %>
-    <span>No reviews just yet, would you like to add the first?</span>
-    <%= link_to "Write a Review", new_lease_review_path(@lease),class: "btn btn-small"%>
-    <% else %>
-      <% @reviews.each do |review| %>
-        <p>
-          User: <%= review.user.email %><br />
-          Comment: <%= review.comment %><br />
-          Rating: <%= review.rating %>
-        </p>
-
-      <% end %>
-
-    <% end %>
+  <div class ="clearfix padding30">
+    <%= link_to "Write a Review", new_lease_review_path(@lease),class: "btn col-md-7"%>
   </div>
+  <h3>Reviews</h3>
+    <% if @reviews.blank? %>
+    <span>No reviews just yet! </span>
+    <% else %>
+
+      <table class="table">
+        <thead>
+          <tr>
+            <th class="col-mid-3"></th>
+            <th class="col-mid-9"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @reviews.each do |review| %>
+          <tr>
+            <td>
+              <h5><%= "#{review.user.email}" %></h5>
+            </td>
+            <td>
+              <%= review.comment %>
+            </td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    <% end %>
 </div>
 
 </body>

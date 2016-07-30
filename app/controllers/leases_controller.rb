@@ -27,6 +27,13 @@ class LeasesController < ApplicationController
     end
   end
 
+  def search
+    if params[:search].present?
+      @leases = Lease.search(params[:search])
+    else
+      @leases = Lease.all
+    end
+  end
 private
 
   def lease_params

@@ -4,7 +4,6 @@
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" />
 <html>
-<link type="text/css" rel="stylesheet" href="assets/stylesheets/application.css" />
 <body>
 <header class="navbar navbar-fixed-top navbar-inverse">
   <div class="container">
@@ -38,7 +37,7 @@
         <% else %>
         <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
           <li>
-        		  <a id= "modal_trigger" href="#modal"> Logining </a>
+        		  <a id= "modal_trigger" href="#modal"> Login </a>
           </li>
                 <div id="modal" class="popupContainer" style="display:none;">
         					<header class="popupHeader">
@@ -113,29 +112,6 @@
         					</section>
         				</div>
               <%end%>
-        				<script type="text/javascript">
-        					$("#modal_trigger").leanModal({
-        						top : 200,
-        						overlay : 0.6,
-        						closeButton : ".modal_close"
-        					});
-        					$(function() {
-        						// Calling Login Form
-        						$("#login_form").click(function() {
-        							$(".social_login").hide();
-        							$(".user_login").show();
-        							return false;
-        						});
-        						// Going back to Social Forms
-        						$(".back_btn").click(function() {
-        							$(".user_login").hide();
-        							$(".user_register").hide();
-        							$(".social_login").show();
-        							$(".header_title").text('Login');
-        							return false;
-        						});
-        					})
-        				</script>
           <li>
             <%= link_to "Create a Lease", new_lease_path %>
           </li>
@@ -153,3 +129,27 @@
 </div>
 </body>
 </html>
+
+<script type="text/javascript">
+  $("#modal_trigger").leanModal({
+    top : 200,
+    overlay : 0.6,
+    closeButton : ".modal_close"
+  });
+  $(function() {
+    // Calling Login Form
+    $("#login_form").click(function() {
+      $(".social_login").hide();
+      $(".user_login").show();
+      return false;
+    });
+    // Going back to Social Forms
+    $(".back_btn").click(function() {
+      $(".user_login").hide();
+      $(".user_register").hide();
+      $(".social_login").show();
+      $(".header_title").text('Login');
+      return false;
+    });
+  })
+</script>

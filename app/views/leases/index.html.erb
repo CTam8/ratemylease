@@ -1,12 +1,18 @@
 <% provide(:title, "All Leases") %>
 <html>
+  <%= form_tag search_leases_path, method: :get, class:"navbar-form navbar-right", role: "search" do %>
+    <p>
+      <%= text_field_tag :search, params[:search], class:"form-control" %>
+      <%= submit_tag "Search", name:nil, class: "btn btn-default" %>
+    </p>
+  <% end %>
 <body>
   <% @lease.each do |lease| %>
   <div>
     <%= lease.address %>
     <%= link_to "Go to Lease", lease %>
-    <% end %>
   </div>
+  <% end %>
 
 </body>
 </html>
