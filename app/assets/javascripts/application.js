@@ -18,34 +18,34 @@
 //= require jquery_ujs
 //= require bootstrap-sprockets
 
-
-$("#modal_trigger").leanModal({
+var $j = jQuery.noConflict();
+$j("#modal_trigger").leanModal({
         top: 100,
         overlay: 0.6,
         closeButton: ".modal_close"
 });
 
-$(function() {
+$j(function() {
         // Calling Login Form
-        $("#login_form").click(function() {
-                $(".social_login").hide();
-                $(".user_login").show();
+        $j("#login_form").click(function() {
+                $j(".social_login").hide();
+                $j(".user_login").show();
                 return false;
         });
 
         // Calling Register Form
-        $("#register_form").click(function() {
-                $(".social_login").hide();
-                $(".user_register").show();
-                $(".header_title").text('Register');
+        $j("#register_form").click(function() {
+                $j(".social_login").hide();
+                $j(".user_register").show();
+                $j(".header_title").text('Register');
                 return false;
         });
 
         // Going back to Social Forms
-        $(".back_btn").click(function() {
-                $(".user_login").hide();
-                $(".social_login").show();
-                $(".header_title").text('Login');
+        $j(".back_btn").click(function() {
+                $j(".user_login").hide();
+                $j(".social_login").show();
+                $j(".header_title").text('Login');
                 return false;
         });
 });

@@ -1,6 +1,6 @@
 <script type="text/javascript" src="/assets/jquery-1.11.0.min.js"></script>
 <script type="text/javascript" src="/assets/jquery.leanModal.min.js"></script>
-<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" />
 <html>
@@ -44,6 +44,12 @@
             </li>
 					</ul>
 				</li>
+        <script>
+          var $j = jQuery.noConflict();
+          $j(document).ready(function(){
+            $j(".dropdown-toggle").dropdown();
+          });
+        </script>
         <% else %>
         <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
           <li>
@@ -123,24 +129,25 @@
         				</div>
               <%end%>
         				<script type="text/javascript">
+                var $p = jQuery.noConflict();
         					$("#modal_trigger").leanModal({
         						top : 200,
         						overlay : 0.6,
         						closeButton : ".modal_close"
         					});
-        					$(function() {
+        					$p(function() {
         						// Calling Login Form
-        						$("#login_form").click(function() {
-        							$(".social_login").hide();
-        							$(".user_login").show();
+        						$p("#login_form").click(function() {
+        							$p(".social_login").hide();
+        							$p(".user_login").show();
         							return false;
         						});
         						// Going back to Social Forms
-        						$(".back_btn").click(function() {
-        							$(".user_login").hide();
-        							$(".user_register").hide();
-        							$(".social_login").show();
-        							$(".header_title").text('Login');
+        						$p(".back_btn").click(function() {
+        							$p(".user_login").hide();
+        							$p(".user_register").hide();
+        							$p(".social_login").show();
+        							$p(".header_title").text('Login');
         							return false;
         						});
         					})
