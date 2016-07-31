@@ -42,6 +42,13 @@
         <% end %>
       </div>
 
+      <div class="field">
+        <%= f.label :avatar do %>
+        <%= f.file_field :avatar %>
+        <%= f.hidden_field :avatar_cache %>
+        <% end %>
+      </div>
+
       <div class="actions">
         <%= f.submit "Sign up", class: "btn btn-success btn-lg btn-block" %>
       </div>
