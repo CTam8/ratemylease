@@ -2,4 +2,8 @@
 
 <h3>Profile</h3>
 
-<b>Hello :first_name </b>
+<h4>
+  Hello
+<%= "#{current_user.first_name} #{current_user.last_name.initial}" %>
+
+</h4>

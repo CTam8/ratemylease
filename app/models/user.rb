@@ -2,13 +2,10 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   #validates :username, presence: true, uniqueness: { case_sensitive: false}
-  devise :database_authenticatable, :omniauthable, :confirmable, :registerable, :recoverable, :rememberable, :trackable, :validatable, :authentication_keys => [:login]
+  devise :database_authenticatable, :omniauthable, :registerable, :recoverable, :rememberable, :trackable, :validatable, :authentication_keys => [:login]
   devise :omniauth_providers => [:facebook, :google_oauth2]
   #Authenticate using email or username
   # :confirmable,
-  def initial
-    self[0,1]
-  end
 
   has_many :reviews
 
@@ -25,7 +22,7 @@ class User < ActiveRecord::Base
       else
         user = User.new(provider: auth.provider,
           :first_name => auth.extra.raw_info.first_name,
-          :last_name => auth.extra.raw_info. last_name,
+          :last_name => auth.extra.raw_info.last_name,
           #:email => email ? email : "#{TEMP_EMAIL_PREFIX}-#{auth.uid}-#{auth.provider}.com",
           :email => auth.info.email,
           #password: Devise.friendly_token[0,20]
@@ -43,6 +40,8 @@ class User < ActiveRecord::Base
 def self.from_omniauth(auth)
   where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
     user.provider = auth.provider
+    user.first_name= auth.first_name
+    user.last_name= auth.last_name
     user.uid = auth.uid
     user.email = auth.info.email
     user.password = Devise.friendly_token[0,20]
