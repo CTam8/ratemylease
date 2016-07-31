@@ -14,18 +14,13 @@ class User < ActiveRecord::Base
   end
 
   def self.find_for_oauth(auth, signed_in_resource = nil)
-
       if user = User.where(:email => auth.info.email).first()
-        user.skip_confirmation!
-        user.save!
         user
       else
-        user = User.new(provider: auth.provider,
-          :first_name => auth.extra.raw_info.first_name,
-          :last_name => auth.extra.raw_info.last_name,
-          #:email => email ? email : "#{TEMP_EMAIL_PREFIX}-#{auth.uid}-#{auth.provider}.com",
+        user = User.create(provider: auth.provider,
+          :first_name => auth.info.first_name,
+          :last_name => auth.info.last_name,
           :email => auth.info.email,
-          #password: Devise.friendly_token[0,20]
           :password => Devise.friendly_token[0,20]
         )
         user.skip_confirmation!
@@ -33,31 +28,25 @@ class User < ActiveRecord::Base
       end
   end
 
-  #def email_verified?
-  #  self.email && self.email !~ TEMP_EMAIL_REGEX
-  #end
-
-def self.from_omniauth(auth)
-  where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
-    user.provider = auth.provider
-    user.first_name= auth.first_name
-    user.last_name= auth.last_name
-    #user.image= auth.info.image
-    user.uid = auth.uid
-    user.email = auth.info.email
-    user.password = Devise.friendly_token[0,20]
-    user.skip_confirmation!
-    user.save!
-  end
-end
-
-
-def self.new_with_session(params, session)
-    super.tap do |user|
-      if data = session["devise.facebook_data"] && session["devise.facebook_data"]["extra"]["raw_info"]
-        user.email = data["email"] if user.email.blank?
+  def self.from_omniauth(auth)
+        where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
+          user.provider = auth.provider
+          user.uid = auth.uid
+          user.first_name = auth.info.first_name
+          user.last_name = auth.info.last_name
+          user.email = auth.info.email
+          #user.image = auth.info.image
+          user.password = Devise.friendly_token[0,20]
       end
-    end
+  end
+
+
+  def self.new_with_session(params, session)
+      super.tap do |user|
+        if data = session["devise.facebook_data"] && session["devise.facebook_data"]["extra"]["raw_info"]
+          user.email = data["email"] if user.email.blank?
+        end
+      end
   end
 
   def login
@@ -73,18 +62,11 @@ def self.new_with_session(params, session)
     end
   end
 
-validate :validate_first_name
-def validate_first_name
-  if User.where(email: first_name).exists?
-    errors.add(:first_name, :invalid)
+  validate :validate_first_name
+  def validate_first_name
+    if User.where(email: first_name).exists?
+      errors.add(:first_name, :invalid)
+    end
   end
-end
-=begin
-  validate :validate_username
 
-  def validate_username
-    if User.where(email: username).exists?
-      errors.add(:username, :invalid)
-  end
-=end
 end
