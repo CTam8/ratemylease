@@ -15,7 +15,6 @@ Rails.application.routes.draw do
   get 'new_lease', :to => "leases#new"
   get 'all_leases', :to => "leases#index"
 
-
   devise_scope :user do
     get "login", :to  => "devise/sessions#new"
     get "signup", :to  => "devise/registrations#new"

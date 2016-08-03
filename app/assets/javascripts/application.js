@@ -17,6 +17,9 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap-sprockets
+//= require underscore
+//= require gmaps/google
+//= require jquery.slick
 
 var $j = jQuery.noConflict();
 $j("#modal_trigger").leanModal({

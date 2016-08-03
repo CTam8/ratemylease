@@ -4,6 +4,7 @@ gem 'rails',                   '5.0.0'
 gem 'bcrypt',                  '3.1.7'
 gem 'faker',                   '1.4.2'
 gem 'carrierwave',             '0.11.2'
+gem "rmagick"
 gem 'mini_magick',             '3.8.0'
 gem 'fog',                     '1.26.0'
 gem 'will_paginate',           '3.1.0'
@@ -26,6 +27,9 @@ gem 'simple_form'
 gem 'paperclip', '~> 5.0'
 gem 'geocoder'
 gem 'searchkick'
+gem 'gmaps4rails'
+gem 'underscore-rails'
+gem "jquery-slick-rails"
 
 group :development, :test do
   gem 'sqlite3',     '1.3.9'

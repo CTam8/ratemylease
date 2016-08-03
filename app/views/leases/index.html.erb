@@ -1,18 +1,79 @@
+<script type="text/javascript" src="//maps.google.com/maps/api/js?key=AIzaSyDDVHE7vDIfbP8Jzh5lOO_tRwSsaBU7LA4&libraries=geometry,places"></script>
+<script src="//cdn.rawgit.com/mahnunchik/markerclustererplus/master/dist/markerclusterer.min.js"></script>
+
 <% provide(:title, "All Leases") %>
 <html>
+<body>
   <%= form_tag search_leases_path, method: :get, class:"navbar-form navbar-right", role: "search" do %>
     <p>
       <%= text_field_tag :search, params[:search], class:"form-control" %>
       <%= submit_tag "Search", name:nil, class: "btn btn-default" %>
     </p>
   <% end %>
-<body>
-  <% @lease.each do |lease| %>
-  <div>
-    <%= lease.address %>
-    <%= link_to "Go to Lease", lease %>
+
+  <div id="map-container">
+    <input id="pac-input" class="controls" type="text" placeholder="Search Box" />
+    <div id="all_markers" class="map-canvas"></div>
   </div>
-  <% end %>
+
+  <div class="panel panel-default">
+    <% @leases.each do |lease| %>
+    <div>
+      <%= lease.address %>
+      <%= link_to "Go to Lease", lease %>
+    </div>
+    <% end %>
+  </div>
+<script>
+
+
+    var handler = Gmaps.build('Google');
+    handler.buildMap({ internal: {id: 'all_markers'}}, function(){
+      var markers = handler.addMarkers(<%=raw @hash.to_json %>);
+      handler.bounds.extendWith(markers);
+      handler.fitMapToBounds();
+    });
+
+
+  // Create the search box and link it to the UI element.
+  var map = new google.maps.Map(document.getElementById('all_markers'))
+
+  var input = document.getElementById('pac-input');
+  var searchBox = new google.maps.places.SearchBox(input);
+  map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+
+  // Bias the SearchBox results towards current map's viewport.
+  map.addListener('bounds_changed', function() {
+  searchBox.setBounds(map.getBounds());
+  });
+  var markers = [];
+
+
+  // Listen for the event fired when the user selects a prediction and retrieve
+  // more details for that place.
+  searchBox.addListener('places_changed', function() {
+  var places = searchBox.getPlaces();
+
+  // For each place, get the icon, name and location.
+  var bounds = new google.maps.LatLngBounds();
+  places.forEach(function(place) {
+
+    if(place.geometry.viewport) {
+      // Only geocodes have viewport.
+      bounds.union(place.geometry.viewport);
+    } else {
+      bounds.extend(place.geometry.location);
+    }
+  });
+  markers.push(new google.maps.Marker({
+            map: map,
+            position: place.geometry.location
+          }));
+  map.fitBounds(bounds);
+});
+
+</script>
+
 
 </body>
 </html>
