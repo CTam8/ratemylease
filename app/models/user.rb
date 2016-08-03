@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  attr_accessor :email, :password, :avatar, :remote_avatar_url
   mount_uploader :avatar, AvatarUploader
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
@@ -15,7 +16,7 @@ class User < ActiveRecord::Base
   end
   has_many :reviews
 
-  def login=(login)
+  def login= (login)
     @login = login
   end
 
