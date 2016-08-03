@@ -42,10 +42,11 @@
         <% end %>
       </div>
 
-      <div class="form-group">
-        <%= f.label :avatar %>
-        <%= f.file_field :avatar %>
-        <%= f.hidden_field :avatar_cache %>
+      <div class="field">
+        <%= f.label :avatar do %>
+          <%= f.file_field :avatar %>
+          <%= f.hidden_field :avatar_cache %>
+        <% end %>
       </div>
 
       <div class="actions">

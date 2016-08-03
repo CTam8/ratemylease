@@ -6,6 +6,7 @@
     <%= form_for resource, as: resource_name, url: registration_path(resource_name),
                   html: { class: "form-horizontal center"} do |f| %>
       <%= current_user.email %>
+
       <div class="form-group">
         <%= f.text_field :first_name, autofocus: true, placeholder: "First Name", class: "form-control" %>
       </div>
@@ -31,9 +32,8 @@
           <%= f.check_box :remove_avatar %>
         <% end %>
       <% end %>
-        <%= f.file_field :avatar %>
-        <%= f.hidden_field :avatar_cache %>
-
+      <%= f.file_field :avatar %>
+      <%= f.hidden_field :avatar_cache %>
 
 
 
