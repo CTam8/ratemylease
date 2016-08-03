@@ -16,7 +16,7 @@
           <%= link_to "Create a Lease", new_lease_path %>
         </li>
         <li>
-          <%= link_to "All Leases", all_leases_path %>
+          <%= link_to "All Leases", all_leases_path, data: { no_turbolink: true } %>
         </li>
         <li>
           <%= link_to "Profile", current_user%>

@@ -13,13 +13,13 @@
 //= require jquery-1.11.0.min.js
 //= require jquery.leanModal.min.js
 //= require turbolinks
+//= require jquery.turbolinks
 //= require_tree .
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap-sprockets
 //= require underscore
 //= require gmaps/google
-//= require jquery.slick
 
 var $j = jQuery.noConflict();
 $j("#modal_trigger").leanModal({

@@ -2,13 +2,14 @@ class LeasesController < ApplicationController
   before_action :authenticate_user!, only: [:create, :new]
 
 
-def index
-  @leases = Lease.all
-  @hash = Gmaps4rails.build_markers(@leases) do |lease, marker|
-    marker.lat lease.latitude
-    marker.lng lease.longitude
+  def index
+    @leases = Lease.all
+    @hash = Gmaps4rails.build_markers(@leases) do |lease, marker|
+      marker.lat lease.latitude
+      marker.lng lease.longitude
+      marker.infowindow lease.address
+    end
   end
-end
 
   def new
     @lease = Lease.new

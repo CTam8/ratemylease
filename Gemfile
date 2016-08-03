@@ -29,7 +29,6 @@ gem 'geocoder'
 gem 'searchkick'
 gem 'gmaps4rails'
 gem 'underscore-rails'
-gem "jquery-slick-rails"
 
 group :development, :test do
   gem 'sqlite3',     '1.3.9'
