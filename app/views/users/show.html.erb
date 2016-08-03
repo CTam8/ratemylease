@@ -4,6 +4,10 @@
 
 <h4>
   Hello
+  <!--<%= image_tag current_user.avatar.to_s if current_user.avatar.present? %>
+  <%= image_tag @users.remote_avatar_url.to_s if @users.remote_avatar_url.present? %>
+-->
+  <%= image_tag @users.avatar_url(:thumb) if @users.avatar? %>
 <%= "#{current_user.first_name} #{current_user.last_name[0]}" %>.
 
 </h4>
