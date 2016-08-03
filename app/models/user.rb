@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  attr_accessor :email, :password, :first_name, :last_name, :avatar, :remote_avatar_url, :remove_avatar
+  attr_accessor :email, :password, :avatar, :remote_avatar_url
   mount_uploader :avatar, AvatarUploader
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
@@ -8,22 +8,13 @@ class User < ActiveRecord::Base
   devise :omniauth_providers => [:facebook, :google_oauth2]
   #Authenticate using email or username
   # :confirmable,
-
   validates_integrity_of  :avatar
   validates_processing_of :avatar
   private
   def avatar_size_validation
-    errors[:avatar] << "should be less than 500KB" if avatar.size > 5.megabytes
+    errors[:avatar] << "should be less than 500KB" if avatar.size > 0.5.megabytes
   end
   has_many :reviews
-
-#  u = User.new
-#  u.avatar = params[:file] # Assign a file like this, or
-#  u.save!
-
-  #u.avatar.url # => '/url/to/file.png'
-  #u.avatar.current_path # => 'path/to/file.png'
-  #u.avatar_identifier # => 'file.png'
 
   def login= (login)
     @login = login
