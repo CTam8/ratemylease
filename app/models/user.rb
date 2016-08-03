@@ -11,12 +11,6 @@ class User < ActiveRecord::Base
   validates_integrity_of  :avatar
   validates_processing_of :avatar
 
-  private
-    def user_params
-      params.require(:users).permit(:email, :password, :password_confirmation, :remember_me, :firstname, :lastname, :avatar, :remote_avatar_url, :avatar_cache, :remove_avatar)
-    end
-  end
-
   has_many :reviews
 
   def login=(login)

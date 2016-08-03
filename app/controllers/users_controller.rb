@@ -5,7 +5,12 @@ class UsersController < ApplicationController
 
   def show
     @users = User.find(params[:id])
+  end
 
+  private
+    def user_params
+      params.require(:users).permit(:email, :password, :password_confirmation, :remember_me, :firstname, :lastname, :avatar, :remote_avatar_url, :avatar_cache, :remove_avatar)
+    end
   end
 
   def edit
