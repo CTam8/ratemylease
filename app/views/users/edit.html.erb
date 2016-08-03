@@ -19,4 +19,11 @@
   <% if @validatable %>
     <p class="help-block"><%= @minimum_password_length %> characters minimum</p>
   <% end %>
+
+  <%= image_tag current_user.avatar.url if current_user.avatar.url.present? %>
+  <%= f.file_field :avatar%>
+
+  <div class="actions">
+    <%= f.submit "Update" %>
+  </div>
 </div>

@@ -41,6 +41,8 @@
           <p class="help-block"><%= @minimum_password_length %> characters minimum</p>
         <% end %>
       </div>
+      <%= f.file_field :avatar%>
+      <br>
 
       <div class="actions">
         <%= f.submit "Sign up", class: "btn btn-success btn-lg btn-block" %>
