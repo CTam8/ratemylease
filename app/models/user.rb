@@ -28,7 +28,6 @@ class User < ActiveRecord::Base
         user = User.create(provider: auth.provider,
           :first_name => auth.info.first_name,
           :last_name => auth.info.last_name,
-          :avatar => auth.info.image,
           :email => auth.info.email,
           :password => Devise.friendly_token[0,20]
         )
@@ -44,7 +43,7 @@ class User < ActiveRecord::Base
           user.first_name = auth.info.first_name
           user.last_name = auth.info.last_name
           user.email = auth.info.email
-          user.avatar = auth.info.image
+          #remote_avatar_url: auth.info.image
           user.password = Devise.friendly_token[0,20]
       end
   end
