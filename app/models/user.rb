@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  mount_uploader :avatar, AvatarUploader
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   #validates :username, presence: true, uniqueness: { case_sensitive: false}
@@ -6,6 +7,9 @@ class User < ActiveRecord::Base
   devise :omniauth_providers => [:facebook, :google_oauth2]
   #Authenticate using email or username
   # :confirmable,
+
+  validates_integrity_of  :avatar
+  validates_processing_of :avatar
 
   has_many :reviews
 
