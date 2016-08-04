@@ -9,7 +9,8 @@ class UsersController < ApplicationController
 
   private
     def user_params
-      params.require(:users).permit(:email, :password, :password_confirmation, :remember_me, :firstname, :lastname, :avatar, :remote_avatar_url, :avatar_cache, :remove_avatar)
+      params.require(:users).permit(:email, :password, :password_confirmation, :created_at, :updated_at,
+      :remember_me, :firstname, :lastname, :avatar, :remote_avatar_url, :avatar_cache, :remove_avatar)
     end
   end
 
@@ -41,4 +42,3 @@ class UsersController < ApplicationController
       render 'edit'
     end
   end
-end

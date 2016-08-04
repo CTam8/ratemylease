@@ -3,13 +3,13 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   #validates :username, presence: true, uniqueness: { case_sensitive: false}
-  devise :database_authenticatable, :omniauthable, :confirmable, :registerable, :recoverable, :rememberable, :trackable, :validatable, :authentication_keys => [:login]
+  devise :database_authenticatable, :omniauthable, :registerable, :recoverable, :rememberable, :trackable, :validatable, :authentication_keys => [:login]
   devise :omniauth_providers => [:facebook, :google_oauth2]
   #Authenticate using email or username
   # :confirmable,
-  attr_accessor :email, :password, :password_confirmation, :remember_me, :first_name, :last_name, :avatar, :avatar_cache, :remove_avatar
-  validates_integrity_of  :avatar
-  validates_processing_of :avatar
+  attr_accessor :password, :password_confirmation, :remember_me, :remote_avatar_url, :avatar_cache, :remove_avatar
+
+  validates_presence_of :first_name
 
   has_many :reviews
 
@@ -67,11 +67,6 @@ class User < ActiveRecord::Base
     end
   end
 
-  validate :validate_first_name
-  def validate_first_name
-    if User.where(email: first_name).exists?
-      errors.add(:first_name, :invalid)
-    end
-  end
+
 
 end

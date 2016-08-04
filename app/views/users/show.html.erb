@@ -5,6 +5,6 @@
 <h4>
   Hello
   <%= image_tag current_user.avatar.url if current_user.avatar.url.present? %>
-<%= "#{current_user.first_name} #{current_user.last_name[0]}" %>.
+<%= "#{current_user.first_name} #{current_user.last_name}" %>.
 
 </h4>
