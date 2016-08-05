@@ -4,7 +4,6 @@
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" />
 <html>
-<link type="text/css" rel="stylesheet" href="assets/application.css" />
 <body>
 <header class="navbar navbar-fixed-top navbar-inverse">
   <div class="container">
@@ -130,7 +129,7 @@
               <%end%>
         				<script type="text/javascript">
                 var $p = jQuery.noConflict();
-        					$("#modal_trigger").leanModal({
+        					$p("#modal_trigger").leanModal({
         						top : 200,
         						overlay : 0.6,
         						closeButton : ".modal_close"
