@@ -7,19 +7,20 @@ class UsersController < ApplicationController
     @users = User.find(params[:id])
   end
 
+
   private
     def user_params
       params.require(:users).permit(:email, :password, :password_confirmation, :created_at, :updated_at,
-      :remember_me, :firstname, :lastname, :avatar, :remote_avatar_url, :avatar_cache, :remove_avatar)
+      :remember_me, :firstname, :lastname, :avatar, :remote_avatar_url, :remove_avatar)
     end
   end
 
   def edit
-    @user = User.find(params[:id])
+    @users = User.find(params[:id])
   end
 
   def new
-    @user = User.new
+    @users = User.new
   end
 
   def create
