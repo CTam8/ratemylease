@@ -4,15 +4,21 @@
 <!DOCTYPE html>
 <h3>Create An Account</h3>
 <html>
-  <h4>Sign Up</h4>
 <head>
   <title>
       <% yield(:title) %> | Rate My Lease
   </title>
 </head>
+<div class="#" id="sign_up_1" style="visibility: visible; display: block;">
+  <h4>I am a:</h4>
+  <input type="button" onclick="pagechange(1,2);" value= "Tenant">
+  <input type="button" onclick="pagechange(1,3)" value= "Landlord">
+  <input type="button" value="Thug">
+</div>
 
-<div class="col-sm-4 col-sm-offset-4">
+<div class="col-sm-4 col-sm-offset-4" id="sign_up_2" style="visibility: hidden; display: none;">
   <div class="light-well">
+    <h4>Sign Up as a Student/Tenant</h4>
 
     <%= form_for resource, as: resource_name, url: registration_path(resource_name),
                   html: { class: "form-horizontal center"} do |f| %>
@@ -20,15 +26,15 @@
       <div class="form-group">
         <%= f.email_field :email, autofocus: true, placeholder: "Email Address", class: "form-control" %>
       </div>
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= devise_error_messages! %>
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+        <%= devise_error_messages! %>
 
       <div class="form-group">
-        <%= f.text_field :first_name, autofocus: true, placeholder: "First Name", class: "form-control" %>
+        <%= f.text_field :first_name, placeholder: "First Name", class: "form-control" %>
       </div>
 
       <div class="form-group">
-        <%= f.text_field :last_name, autofocus: true, placeholder: "Last Name", class: "form-control" %>
+        <%= f.text_field :last_name, placeholder: "Last Name", class: "form-control" %>
       </div>
 
       <div class="form-group">
@@ -49,19 +55,100 @@
       </div>
       <%= devise_error_messages! %>
     <% end %>
+
+    <%= link_to user_facebook_omniauth_authorize_path do %>
+      <span class="icon"><i class="fa fa-facebook-square"></i></span> <span class="icon_title">| Continue with Facebook</span>
+    <% end %>
+
+    <br>
+
+  <%= link_to user_google_oauth2_omniauth_authorize_path do %>
+    <span class="icon"><i class="fa fa-google-plus"></i></span> <span class="icon_title">| Continue with Google Plus</span> </a>
+    <% end %>
+
+    <input type="button" value="back" onclick="pagechange(2,1);">
   </div>
 </div>
 
-  <!--<%= link_to "Sign in with Facebook", user_facebook_omniauth_authorize_path%>-->
-  <%= link_to user_facebook_omniauth_authorize_path do %>
-    <span class="icon"><i class="fa fa-facebook-square"></i></span> <span class="icon_title">| Continue with Facebook</span>
-  <% end %>
 
-  <br>
-
-<%= link_to user_google_oauth2_omniauth_authorize_path do %>
-  <span class="icon"><i class="fa fa-google-plus"></i></span> <span class="icon_title">| Continue with Google Plus</span> </a>
-  <% end %>
 
 <% end %>
+
+<div class="col-sm-4 col-sm-offset-4" id="sign_up_3" style="visibility: hidden; display: none;">
+  <div class="light-well">
+    <h4>Sign Up as a Landlord</h4>
+    <%= form_for resource, as: resource_name, url: registration_path(resource_name),
+                  html: { class: "form-horizontal center"} do |f| %>
+
+      <div class="form-group">
+        <%= f.email_field :email, autofocus: true, placeholder: "Email Address", class: "form-control" %>
+      </div>
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+        <%= devise_error_messages! %>
+
+      <!-- Allow user email to be used as contact -->
+
+      <div class="form-group">
+        <%= f.text_field :first_name, placeholder: "First Name", class: "form-control" %>
+      </div>
+
+      <div class="form-group">
+        <%= f.text_field :last_name, placeholder: "Last Name", class: "form-control" %>
+      </div>
+
+      <div class="form-group">
+        <%= f.text_field :contact_phone, placeholder: "Contact Phone Number", class: "form-control"%>
+      </div>
+
+      <div class="form-group">
+        <%= f.password_field :password, autocomplete: "off", placeholder: "Password", class: "form-control" %>
+      </div>
+
+      <div class="form-group">
+        <%= f.password_field :password_confirmation, autocomplete: "off", placeholder: "Confirm Password", class: "form-control" %>
+        <% if @validatable %>
+          <p class="help-block"><%= @minimum_password_length %> characters minimum</p>
+        <% end %>
+      </div>
+      <%= f.file_field :avatar %>
+      <br>
+
+      <div class="actions">
+        <%= f.submit "Sign up", class: "btn btn-success btn-lg btn-block" %>
+      </div>
+      <%= devise_error_messages! %>
+    <% end %>
+
+    <%= link_to user_facebook_omniauth_authorize_path do %>
+      <span class="icon"><i class="fa fa-facebook-square"></i></span> <span class="icon_title">| Continue with Facebook</span>
+    <% end %>
+
+    <br>
+
+    <%= link_to user_google_oauth2_omniauth_authorize_path do %>
+    <span class="icon"><i class="fa fa-google-plus"></i></span> <span class="icon_title">| Continue with Google Plus</span> </a>
+    <% end %>
+
+    <input type="button" value="back" onclick="pagechange(3,1);">
+  </div>
+</div>
+
+
+<% end %>
+
+<script type="text/javascript">
+function pagechange(frompage, topage) {
+  var page=document.getElementById('sign_up_'+frompage);
+  if (!page) return false;
+  page.style.visibility='hidden';
+  page.style.display='none';
+
+  page=document.getElementById('sign_up_'+topage);
+  if (!page) return false;
+  page.style.display='block';
+  page.style.visibility='visible';
+
+  return true;
+}
+</script>
 </html>
