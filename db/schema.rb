@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160803221401) do
+ActiveRecord::Schema.define(version: 20160809201909) do
 
   create_table "fbusers", force: :cascade do |t|
     t.string   "provider"
@@ -82,6 +82,9 @@ ActiveRecord::Schema.define(version: 20160803221401) do
     t.string   "first_name"
     t.string   "last_name"
     t.string   "avatar"
+    t.string   "type"
+    t.string   "contact_email"
+    t.string   "contact_phone"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
