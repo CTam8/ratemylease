@@ -1,4 +1,6 @@
-Rate My Lease
+= Rate My Lease
 Ratings and reviews site for student housing.
 
 Built By: Christian Tam & Michael Lam
+
+Additional consultation by Blaise Petric
