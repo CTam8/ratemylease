@@ -29,7 +29,7 @@ gem 'paperclip', '~> 5.0'
 group :development, :test do
   gem 'sqlite3',     '1.3.9'
   gem 'byebug',      '3.4.0'
-  gem 'web-console',    '3.3.1'
+  gem 'web-console', '3.3.1'
   gem 'spring',      '1.1.3'
 end
 
@@ -41,6 +41,6 @@ end
 
 group :production do
   gem 'pg',            '0.18.4'
-  gem 'rails_12factor', '0.0.2'
-  gem 'puma',           '2.15.0'
+  gem 'rails_12factor','0.0.2'
+  gem 'puma',          '2.15.0'
 end
