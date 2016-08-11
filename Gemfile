@@ -4,7 +4,7 @@ gem 'rails',                   '5.0.0'
 gem 'bcrypt',                  '3.1.7'
 gem 'faker',                   '1.4.2'
 gem 'carrierwave',             '0.11.2'
-gem 'mini_magick',             '3.8.0'
+gem 'mini_magick',             '4.5.1'
 gem 'fog',                     '1.26.0'
 gem 'will_paginate',           '3.1.0'
 gem 'bootstrap-will_paginate', '0.0.10'
@@ -30,7 +30,7 @@ gem 'searchkick'
 group :development, :test do
   gem 'sqlite3',     '1.3.9'
   gem 'byebug',      '3.4.0'
-  gem 'web-console',    '3.3.1'
+  gem 'web-console', '3.3.1'
   gem 'spring',      '1.1.3'
 end
 
@@ -42,6 +42,6 @@ end
 
 group :production do
   gem 'pg',            '0.18.4'
-  gem 'rails_12factor', '0.0.2'
-  gem 'puma',           '2.15.0'
+  gem 'rails_12factor','0.0.2'
+  gem 'puma',          '2.15.0'
 end

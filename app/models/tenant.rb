@@ -1,0 +1,4 @@
+class Tenant < User
+
+
+end

@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  mount_uploader :avatar, AvatarUploader
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   #validates :username, presence: true, uniqueness: { case_sensitive: false}
@@ -6,6 +7,9 @@ class User < ActiveRecord::Base
   devise :omniauth_providers => [:facebook, :google_oauth2]
   #Authenticate using email or username
   # :confirmable,
+  attr_accessor :password, :password_confirmation, :remember_me, :remote_avatar_url, :avatar_cache, :remove_avatar
+
+  validates_presence_of :first_name
 
   has_many :reviews
 
@@ -14,17 +18,14 @@ class User < ActiveRecord::Base
   end
 
   def self.find_for_oauth(auth, signed_in_resource = nil)
-
       if user = User.where(:email => auth.info.email).first()
-        user.skip_confirmation!
-        user.save!
         user
       else
-        user = User.new(provider: auth.provider,
-          #:name => auth.extra.raw_info.name,
-          #:email => email ? email : "#{TEMP_EMAIL_PREFIX}-#{auth.uid}-#{auth.provider}.com",
+        user = User.create(provider: auth.provider,
+          :first_name => auth.info.first_name,
+          :last_name => auth.info.last_name,
+          :remote_avatar_url => auth.info.image,
           :email => auth.info.email,
-          #password: Devise.friendly_token[0,20]
           :password => Devise.friendly_token[0,20]
         )
         user.skip_confirmation!
@@ -32,28 +33,25 @@ class User < ActiveRecord::Base
       end
   end
 
-  #def email_verified?
-  #  self.email && self.email !~ TEMP_EMAIL_REGEX
-  #end
-
-def self.from_omniauth(auth)
-  where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
-    user.provider = auth.provider
-    user.uid = auth.uid
-    user.email = auth.info.email
-    user.password = Devise.friendly_token[0,20]
-    user.skip_confirmation!
-    user.save!
-  end
-end
-
-
-def self.new_with_session(params, session)
-    super.tap do |user|
-      if data = session["devise.facebook_data"] && session["devise.facebook_data"]["extra"]["raw_info"]
-        user.email = data["email"] if user.email.blank?
+  def self.from_omniauth(auth)
+        where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
+          user.provider = auth.provider
+          user.uid = auth.uid
+          user.first_name = auth.info.first_name
+          user.last_name = auth.info.last_name
+          user.email = auth.info.email
+          user.remote_avatar_url = auth.info.image
+          user.password = Devise.friendly_token[0,20]
       end
-    end
+  end
+
+
+  def self.new_with_session(params, session)
+      super.tap do |user|
+        if data = session["devise.facebook_data"] && session["devise.facebook_data"]["extra"]["raw_info"]
+          user.email = data["email"] if user.email.blank?
+        end
+      end
   end
 
   def login
@@ -69,12 +67,6 @@ def self.new_with_session(params, session)
     end
   end
 
-=begin
-  validate :validate_username
 
-  def validate_username
-    if User.where(email: username).exists?
-      errors.add(:username, :invalid)
-  end
-=end
+
 end

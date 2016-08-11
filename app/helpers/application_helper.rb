@@ -10,6 +10,14 @@ module ApplicationHelper
         end
     end
 
+  #def display_avatar(user)
+  #  unless user.avatar.nil?
+  #    image_tag(user.avatar.file_name)
+  #  else
+  #    image_tag("/path/to/fallback.jpg")
+  #   end
+  #end
+
   def resource_name
     :user
   end
