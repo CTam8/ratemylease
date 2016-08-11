@@ -12,16 +12,6 @@
 
 ActiveRecord::Schema.define(version: 20160809201909) do
 
-  create_table "fbusers", force: :cascade do |t|
-    t.string   "provider"
-    t.string   "uid"
-    t.string   "name"
-    t.string   "oauth_token"
-    t.datetime "oauth_expires_at"
-    t.datetime "created_at",       null: false
-    t.datetime "updated_at",       null: false
-  end
-
   create_table "identities", force: :cascade do |t|
     t.integer  "user_id"
     t.string   "provider"
@@ -48,6 +38,8 @@ ActiveRecord::Schema.define(version: 20160809201909) do
     t.string   "image_content_type"
     t.integer  "image_file_size"
     t.datetime "image_updated_at"
+    t.float    "latitude"
+    t.float    "longitude"
   end
 
   create_table "reviews", force: :cascade do |t|
