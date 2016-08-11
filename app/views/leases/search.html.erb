@@ -1,6 +1,10 @@
-<% @leases.each do |lease| %>
-<div>
-  <%= lease.address %>
-  <%= link_to "Go to Lease", lease %>
-</div>
+<% if @leases.blank? %>
+  <h3>Couldn't find a lease with your search criteria!</h3>
+  <% else %>
+    <% @leases.each do |lease| %>
+    <div>
+      <%= lease.address %>
+      <%= link_to "Go to Lease", lease %>
+    </div>
+    <% end %>
 <% end %>

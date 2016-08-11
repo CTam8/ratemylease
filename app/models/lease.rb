@@ -1,4 +1,5 @@
 class Lease < ApplicationRecord
+  attr_accessor :image
 
   searchkick
   has_many :reviews
@@ -23,11 +24,14 @@ class Lease < ApplicationRecord
     ["Saskatchewan"]
   ]
 
-  has_attached_file :image, styles: { medium: "400x600#>"}
-  validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
+  # has_attached_file :image, styles: { medium: "400x600#>"}
+  # validates_attachment_content_type :image, content_type: /\Aimage\/.*\Z/
+  mount_uploader :image, ImageUploader
 
   geocoded_by :full_address
-  after_validation :geocode
+  after_validation :geocode, :if => :address_changed?
+  scope :leases,               -> { where.not(:latitude => nil) }
+  scope :leases,               -> { where.not(:longitude => nil) }
 
   def full_address
     [address,city,province,postalcode].join(', ')

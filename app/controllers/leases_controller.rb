@@ -1,7 +1,14 @@
 class LeasesController < ApplicationController
   before_action :authenticate_user!, only: [:create, :new]
+
+
   def index
-    @lease = Lease.all
+    @leases = Lease.all
+    @hash = Gmaps4rails.build_markers(@leases) do |lease, marker|
+      marker.lat lease.latitude
+      marker.lng lease.longitude
+      marker.infowindow lease.address
+    end
   end
 
   def new
@@ -20,10 +27,9 @@ class LeasesController < ApplicationController
   def show
     @lease = Lease.find(params[:id])
     @reviews = Review.where(lease_id: @lease)
-    if @reviews.blank?
-      @avg_rating = 0
-    else
-      @avg_rating = @reviews.average(:rating).round(2)
+    @hash = Gmaps4rails.build_markers(@lease) do |lease, marker|
+      marker.lat lease.latitude
+      marker.lng lease.longitude
     end
   end
 
@@ -34,10 +40,21 @@ class LeasesController < ApplicationController
       @leases = Lease.all
     end
   end
+
+  def update
+    @lease = Lease.find(params[:id])
+    if @lease.update_attributes(lease_params)
+     flash[:success] = "Images updated"
+     redirect_to @lease
+    else
+     render 'show'
+   end
+  end
+
 private
 
   def lease_params
     params.require(:lease).permit(:address, :province, :city, :university, :postalcode, :numberofbedrooms,
-                  :numberofparkingspots, :numberofbathrooms, :utilities, :internet)
+                  :numberofparkingspots, :numberofbathrooms, :utilities, :internet, :image)
   end
 end
