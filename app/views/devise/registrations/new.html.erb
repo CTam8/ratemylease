@@ -116,6 +116,10 @@
       <%= f.file_field :avatar %>
       <br>
 
+      <div class="form-group">
+        <%=f.text_field :typeofuser, type: "hidden", class: "form-control", value: "LandLord"%>
+      </div>
+
       <div class="actions">
         <%= f.submit "Sign up", class: "btn btn-success btn-lg btn-block" %>
       </div>
