@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160809201909) do
+ActiveRecord::Schema.define(version: 20160902210807) do
 
   create_table "identities", force: :cascade do |t|
     t.integer  "user_id"
@@ -75,7 +75,7 @@ ActiveRecord::Schema.define(version: 20160809201909) do
     t.string   "first_name"
     t.string   "last_name"
     t.string   "avatar"
-    t.string   "type"
+    t.string   "typeofuser"
     t.string   "contact_email"
     t.string   "contact_phone"
     t.index ["email"], name: "index_users_on_email", unique: true
