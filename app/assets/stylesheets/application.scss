@@ -15,7 +15,6 @@
  *= require_self
  */
 @import "bootstrap-sprockets";
-@import "bootstrap";
 body {
         font-family: 'Source Sans Pro', sans-serif;
         font-size: 14px;
@@ -68,7 +67,7 @@ a.btn {
         text-decoration: none;
         overflow: auto;
         padding: 10px 0;
-        border-bottom: 1px solid $gray-lighter;
+        border-bottom: 1px;
 }
 
 a.btn_red {

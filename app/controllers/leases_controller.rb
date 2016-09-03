@@ -4,11 +4,17 @@ class LeasesController < ApplicationController
 
   def index
     @leases = Lease.all
-    @hash = Gmaps4rails.build_markers(@leases) do |lease, marker|
-      marker.lat lease.latitude
-      marker.lng lease.longitude
-      marker.infowindow lease.address
+
+    @markers = @leases.collect do |lease|
+        [lease.address.to_s, lease.latitude.to_f, lease.longitude.to_f]
     end
+
+    @center = Geocoder::Calculations.geographic_center(
+      @leases.collect do |lease|
+      [lease.latitude.to_f, lease.longitude.to_f]
+    end
+    )
+
   end
 
   def new
