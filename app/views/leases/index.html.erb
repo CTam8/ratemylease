@@ -77,7 +77,7 @@
 
       google.maps.event.addListener(marker, 'click', (function(marker, i) {
         return function() {
-          infowindow.setContent(locations[i][0]);
+          infowindow.setContent('<div style="width: 200px; height: 70px; text-align: center;">' + locations[i][0] + "<br />" + locations[i][3] + ", " + locations[i][4] + "<br />" + locations[i][5] + "<br />" + locations[i][6]);
           infowindow.open(map, marker);
         }
       })(marker, i));

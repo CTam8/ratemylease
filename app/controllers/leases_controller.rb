@@ -6,14 +6,15 @@ class LeasesController < ApplicationController
     @leases = Lease.all
 
     @markers = @leases.collect do |lease|
-        [lease.address.to_s, lease.latitude.to_f, lease.longitude.to_f]
+      @id = view_context.link_to "Go To Lease", lease_path(lease.id)
+
+        [lease.address.to_s, lease.latitude.to_f, lease.longitude.to_f, lease.city.to_s, lease.province.to_s, lease.postalcode.to_s, @id]
     end
 
     @center = Geocoder::Calculations.geographic_center(
-      @leases.collect do |lease|
-      [lease.latitude.to_f, lease.longitude.to_f]
-    end
-    )
+        @leases.collect do |lease|
+        [lease.latitude.to_f, lease.longitude.to_f]
+      end)
 
   end
 
