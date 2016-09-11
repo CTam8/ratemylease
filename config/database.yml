@@ -22,6 +22,6 @@ test:
 
 production:
   adapter: postgresql
-  database: postgres://jatignrgspcrkg:jDxIe-VEhctmbAAGyhgXD68S1D@ec2-54-221-244-190.compute-1.amazonaws.com:5432/dfo832rdtdduuv
-  pool: 5
-  timeout:5000
+  database: dfo832rdtdduuv
+  user: jatignrgspcrkg
+  password: jDxIe-VEhctmbAAGyhgXD68S1D
