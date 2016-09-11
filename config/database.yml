@@ -21,5 +21,7 @@ test:
   database: db/test.sqlite3
 
 production:
-  <<: *default
-  database: db/production.sqlite3
+  adapter: postgresql
+  database: postgres://jatignrgspcrkg:jDxIe-VEhctmbAAGyhgXD68S1D@ec2-54-221-244-190.compute-1.amazonaws.com:5432/dfo832rdtdduuv
+  pool: 5
+  timeout:5000

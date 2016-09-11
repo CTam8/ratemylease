@@ -7,7 +7,6 @@ class LeasesController < ApplicationController
 
     @markers = @leases.collect do |lease|
       @id = view_context.link_to "Go To Lease", lease_path(lease.id)
-
         [lease.address.to_s, lease.latitude.to_f, lease.longitude.to_f, lease.city.to_s, lease.province.to_s, lease.postalcode.to_s, @id]
     end
 
@@ -34,10 +33,8 @@ class LeasesController < ApplicationController
   def show
     @lease = Lease.find(params[:id])
     @reviews = Review.where(lease_id: @lease)
-    @hash = Gmaps4rails.build_markers(@lease) do |lease, marker|
-      marker.lat lease.latitude
-      marker.lng lease.longitude
-    end
+
+    @marker = [@lease.address.to_s, @lease.latitude.to_f, @lease.longitude.to_f, @lease.city.to_s, @lease.province.to_s, @lease.postalcode.to_s]
   end
 
   def search
