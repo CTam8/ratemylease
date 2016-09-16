@@ -2,15 +2,10 @@
 <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.6/css/font-awesome.min.css" />
 <!DOCTYPE html>
 <html>
-<h3>Log In</h3>
-
-
-<h4>Log in to Rate My Lease</h4>
 <head>
-  <title>
-    <% yield(:title) %> | Rate My Lease
-  </title>
+  <% yield(:title) %> | Rate My Lease
 </head>
+<h3>Log In</h3>
 
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
 
