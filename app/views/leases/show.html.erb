@@ -1,6 +1,7 @@
 <% provide(:title, @lease.address) %>
 <html>
 <body>
+  <%= javascript_include_tag 'jquery.raty.js', 'data-turbolinks-track' => true %>
   <div class="panel panel-default">
     <div class="panel-body">
       <div class="row">
@@ -54,39 +55,24 @@
         </div>
         <%= image_tag @lease.image_url, :class => "image-container" %>
       </div>
+      <div>
+        <h2>Average Rating</h2>
+        <div class="average-review-rating" data-score= "<%= @avg_rating %>"></div>
+        <span><%= @lease.reviews.count %></span>
+      </div>
       <div id="marker" style='width: 500px; height: 400px;'></div>
 
     </div>
+  </div>
+  <h3>Reviews</h3>
+  <div>
+    <%= render @lease.reviews %>
+
     <div class ="clearfix padding30">
       <%= link_to "Write a Review", new_lease_review_path(@lease),class: "btn col-md-7"%>
     </div>
-    <h3>Reviews</h3>
-      <% if @reviews.blank? %>
-      <span>No reviews just yet! </span>
-      <% else %>
-
-        <table class="table">
-          <thead>
-            <tr>
-              <th class="col-mid-3"></th>
-              <th class="col-mid-9"></th>
-            </tr>
-          </thead>
-          <tbody>
-            <% @reviews.each do |review| %>
-            <tr>
-              <td>
-                <h5><%= "#{review.user.email}" %></h5>
-              </td>
-              <td>
-                <%= review.comment %>
-              </td>
-            </tr>
-            <% end %>
-          </tbody>
-        </table>
-      <% end %>
   </div>
+
   <script type="text/javascript">
 
   function initAutocomplete() {
@@ -106,6 +92,31 @@
     });
   }
   </script>
+
 </body>
 </html>
+<script>
+  (function($){
+    $('.review-rating').raty({
+      readOnly: true,
+      score: function() {
+        return $(this).attr('data-score');
+      },
+      path: '/assets'
+    });
+    })(jQuery);
+</script>
+
+
+<script>
+  (function($){
+  	$('.average-review-rating').raty({
+  		readOnly: true,
+  		path: '/assets',
+  		score: function() {
+  			return $(this).attr('data-score')
+  		}
+  	});
+  })(jQuery);
+</script>
 <script type="text/javascript" src="//maps.google.com/maps/api/js?key=AIzaSyDDVHE7vDIfbP8Jzh5lOO_tRwSsaBU7LA4&libraries=places&callback=initAutocomplete" async defer></script>
