@@ -1,5 +1,5 @@
 class LeasesController < ApplicationController
-  before_action :authenticate_user!, only: [:create, :new]
+  before_action :authenticate_user!, only: [:create, :new, :index, :show,  :update]
 
 
   def index
@@ -33,8 +33,13 @@ class LeasesController < ApplicationController
   def show
     @lease = Lease.find(params[:id])
     @reviews = Review.where(lease_id: @lease)
-
     @marker = [@lease.address.to_s, @lease.latitude.to_f, @lease.longitude.to_f, @lease.city.to_s, @lease.province.to_s, @lease.postalcode.to_s]
+
+    if @lease.reviews.blank?
+      @avg_rating = 0
+    else
+      @avg_rating = @lease.reviews.average(:rating).round(2)
+    end
   end
 
   def search

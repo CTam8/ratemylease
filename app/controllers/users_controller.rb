@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  
   def index
       @users = User.paginate(page: params[:page])
   end
@@ -8,11 +9,14 @@ class UsersController < ApplicationController
   end
 
   private
+<<<<<<< HEAD
     def user_params
       params.require(:users).permit(:email, :password, :password_confirmation, :created_at, :updated_at,
        :firstname, :lastname, :typeofuser)
     end
   end
+=======
+>>>>>>> lease-geocoder
 
   def edit
     @users = User.find(params[:id])
@@ -31,6 +35,7 @@ class UsersController < ApplicationController
     else
       render 'new'
     end
+
   end
 
   def update
@@ -42,3 +47,4 @@ class UsersController < ApplicationController
       render 'edit'
     end
   end
+end

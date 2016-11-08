@@ -10,16 +10,16 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require jquery-1.11.0.min.js
-//= require jquery.leanModal.min.js
-//= require turbolinks
-//= require jquery.turbolinks
-//= require_tree .
-//= require jquery
-//= require jquery_ujs
-//= require bootstrap-sprockets
-//= require underscore
-//= require gmaps/google
+// = require jquery-1.11.0.min.js
+// = require jquery.leanModal.min.js
+// = require_tree .
+// = require jquery
+// = require jquery_ujs
+// = require jquery.turbolinks
+// = require bootstrap-sprockets
+// = require underscore
+// = require gmaps/google
+
 
 var $j = jQuery.noConflict();
 $j("#modal_trigger").leanModal({

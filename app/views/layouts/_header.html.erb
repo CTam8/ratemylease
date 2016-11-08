@@ -81,7 +81,7 @@
         									<a href="#" id="login_form" class="btn">Login</a>
         								</div>
         								<div class="one_half last">
-                          <%= link_to "Sign Up", signup_path %>
+                          <%= link_to "Sign Up", new_user_registration_path %>
         								<!--<a href="#" id="register_form" class="btn">Sign up</a>-->
         								</div>
         							</div>
@@ -93,7 +93,7 @@
                                     html: { class: "form-horizontal center"} do |f| %>
 
                         <div class="form-group">
-                          <%= f.text_field :login, autofocus: true, placeholder: "Username or Email", class: "form-control" %>
+                          <%= f.text_field :email, autofocus: true, placeholder: "Email", class: "form-control" %>
                         </div>
 
                         <div class="form-group">
@@ -127,15 +127,12 @@
         					</section>
         				</div>
               <%end%>
-          <li>
-            <%= link_to "Create a Lease", new_lease_path %>
-          </li>
 
           <li>
-          <%= link_to 'Login', login_path  %>
+          <%= link_to 'Login', new_user_session_path  %>
           </li>
           <li>
-            <%= link_to "Sign Up", signup_path %>
+            <%= link_to "Sign Up", new_user_registration_path %>
           </li>
         <% end %>
       </ul>
