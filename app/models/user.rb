@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
   devise :omniauth_providers => [:facebook, :google_oauth2]
   #Authenticate using email or username
   # :confirmable,
-  attr_accessor :password, :password_confirmation, :remember_me, :remote_avatar_url, :avatar_cache, :remove_avatar
+  attr_accessor :remember_me
 
   validates_presence_of :first_name
 
