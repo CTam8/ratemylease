@@ -1,9 +1,8 @@
 class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
-  protect_from_forgery with: :exception
 
-  before_filter :configure_permitted_parameters, if: :devise_controller?
+  # before_action :configure_permitted_parameters, if: :devise_controller?
 
   protected
 
@@ -26,13 +25,12 @@ class ApplicationController < ActionController::Base
       # Redirect to the 'finish_signup' page if the user
       # email hasn't been verified yet
       if current_user && !current_user.email_verified?
-        redirect_to finish_signup_path(current_user)
+        redirect_to finish_sign_up(current_user)
       end
     end
 
-  def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:email, :password, :password_confirmation,:typeofuser, :avatar, :first_name, :last_name, :remember_me])
-    devise_parameter_sanitizer.permit(:sign_in, keys: [:email, :password, :password_confirmation, :remember_me])
-    devise_parameter_sanitizer.permit( :account_update, keys: [:avatar])
-  end
+  # def configure_permitted_parameters
+  #   devise_parameter_sanitizer.permit(:sign_in, keys: [:email, :password, :password_confirmation, :typeofuser, :avatar, :first_name, :last_name, :remember_me])
+  #   # devise_parameter_sanitizer.permit( :account_update, keys: [:avatar])
+  # end
 end

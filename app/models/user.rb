@@ -1,20 +1,21 @@
 class User < ActiveRecord::Base
+
   mount_uploader :avatar, AvatarUploader
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
-  #validates :username, presence: true, uniqueness: { case_sensitive: false}
-  devise :database_authenticatable, :omniauthable, :registerable, :recoverable, :rememberable, :trackable, :validatable, :authentication_keys => [:login]
+  devise :database_authenticatable, :omniauthable, :registerable, :recoverable, :rememberable, :trackable, :validatable, :authentication_keys => [:email]
   devise :omniauth_providers => [:facebook, :google_oauth2]
-  #Authenticate using email or username
-  # :confirmable,
-  attr_accessor :password, :password_confirmation, :remember_me, :remote_avatar_url, :avatar_cache, :remove_avatar
+  #Authenticate using email or username :confirmable,
 
+  #attr_accessor :email, :password, :password_confirmation, :remember_me, :remote_avatar_url, :avatar_cache, :remove_avatar
   validates_presence_of :first_name
 
   has_many :reviews, dependent: :destroy
 
-  def login=(login)
-    @login = login
+
+  def user_params
+    params.require(:users).permit(:email, :password, :password_confirmation, :created_at, :updated_at,
+    :remember_me, :firstname, :lastname, :typeofuser, :avatar, :remote_avatar_url)
   end
 
   def self.find_for_oauth(auth, signed_in_resource = nil)
@@ -54,19 +55,9 @@ class User < ActiveRecord::Base
       end
   end
 
-  def login
-    @login = self.email
-  end
-
-  def self.find_for_database_authentication(warden_conditions)
-    conditions = warden_conditions.dup
-    if login = conditions.delete(:login)
-      where(conditions.to_h).where("lower(email) = :value", { :value => login.downcase }).first
-    elsif conditions.has_key?(:email)
-      where(conditions.to_h).first
+  def validate_password?(pwd)
+      true
     end
-  end
-
 
 
 end
