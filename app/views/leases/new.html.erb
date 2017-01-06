@@ -7,7 +7,7 @@
 	</head>
 	<body>
 		<h3> Create a Lease </h3>
-			<%= simple_form_for @lease,:html => { :class => 'well' }, url: leases_path do |f| %>
+			<%= simple_form_for @lease, :html => { :class => 'well' }, url: leases_path do |f| %>
 			<% if @lease.errors.any? %>
 				<div id="error_explanation">
 					<span><%= pluralize(@lease.errors.count, "error") %> prohibited this lease from being saved:</span>

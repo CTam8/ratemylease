@@ -76,16 +76,20 @@
 
 html, body {
       height: 100%;
-      width: 100%;
       margin: 0;
       padding: 0;
     }
 
 #map {
   height: 100%;
-  width: 100%;
 }
-
+#map-canvas{
+    position: absolute;
+    top: 50px;
+    left: 0;
+    bottom: 0;
+    right: 0;
+}
 
   .controls {
     margin-top: 12px;
@@ -104,8 +108,8 @@ html, body {
     font-size: 15px;
     font-weight: 300;
     color: black;
-    margin-left: 12px;
-    margin-top: 80px;
+    margin-left: 11px;
+    margin-top: 16px;
     padding: 0 11px 0 13px;
     text-overflow: ellipsis;
     width: 300px;
