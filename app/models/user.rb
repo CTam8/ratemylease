@@ -5,13 +5,10 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :omniauthable, :registerable, :recoverable, :rememberable, :trackable, :validatable, :authentication_keys => [:email]
   devise :omniauth_providers => [:facebook, :google_oauth2]
-<<<<<<< HEAD
   #Authenticate using email or username
   # :confirmable,
-  attr_accessor :remember_me
-=======
+  #attr_accessor :remember_me
   #Authenticate using email or username :confirmable,
->>>>>>> lease-geocoder
 
   #attr_accessor :email, :password, :password_confirmation, :remember_me, :remote_avatar_url, :avatar_cache, :remove_avatar
   validates_presence_of :first_name
