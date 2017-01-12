@@ -25,7 +25,9 @@
         <p class="help-block"><%= @minimum_password_length %> characters minimum</p>
       <% end %>
 
+      <%#= "Current Avatar" %>
       <%= image_tag current_user.avatar.url if current_user.avatar.url.present? %>
+      <%# "Update Avatar" %>
       <%= f.file_field :avatar%>
 
       <div class="actions">

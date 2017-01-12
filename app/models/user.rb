@@ -9,9 +9,14 @@ class User < ActiveRecord::Base
 
   #attr_accessor :email, :password, :password_confirmation, :remember_me, :remote_avatar_url, :avatar_cache, :remove_avatar
   validates_presence_of :first_name
+  validates_integrity_of :avatar
+  validates_processing_of :avatar
 
   has_many :reviews, dependent: :destroy
 
+  #def avatar_size_validation
+  #  errors[:avatar] << "should be less than 500KB" if avatar.size > 0.5 megabytes
+  #end
 
   def user_params
     params.require(:users).permit(:email, :password, :password_confirmation, :created_at, :updated_at,
