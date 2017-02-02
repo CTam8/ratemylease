@@ -38,7 +38,6 @@ SimpleForm.setup do |config|
 
     # Calculates readonly automatically from readonly attributes
     b.optional :readonly
-
     ## Inputs
     b.use :label_input
     b.use :hint,  wrap_with: { tag: :span, class: :hint }

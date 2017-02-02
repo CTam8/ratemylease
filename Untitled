@@ -1,0 +1,30 @@
+custom filters ={
+bathrooms : 4
+
+}
+
+for each marker as a{
+ a
+
+
+}
+
+for each markerOnTheMap {
+
+marker[counter].title != custom filters.title {
+
+  marker.setMap(false)
+}
+}
+
+
+||
+
+
+when new filter
+
+delete all current markers
+
+query database for locations matching filters
+
+push all of those ^

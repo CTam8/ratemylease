@@ -5,11 +5,14 @@
   <script src="//cdn.rawgit.com/mahnunchik/markerclustererplus/master/dist/markerclusterer.min.js"></script>
 </head>
 <body>
-
+  <span class="checkbox" id="utilities-filter">Filter Utilities</span>
+  <%= check_box_tag 'ratings[]', "R" %>
+  
   <div id='map-canvas'>
     <input id="pac-input" class="controls" type="text" placeholder="Search Box"/>
     <div id="map" style="width: 100%; height: 100%;"></div>
   </div>
+
 
   <script type="text/javascript">
 
@@ -73,7 +76,8 @@
     for (i = 0; i < locations.length; i++) {
       marker = new google.maps.Marker({
         position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-        map: map
+        map: map,
+        utilities: locations[i][6],
       });
 
       google.maps.event.addListener(marker, 'click', (function(marker, i) {
@@ -84,8 +88,13 @@
       })(marker, i));
 
     }
-
   }
+
+  $(document).on('click', '#utilities-filter', function(){
+      $.each(map.markers, function(i, marker) {
+              marker.visible = true;
+      });
+  });
   </script>
 </body>
 </html>
