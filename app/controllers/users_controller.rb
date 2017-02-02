@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  
+
   def index
       @users = User.paginate(page: params[:page])
   end
@@ -9,6 +9,11 @@ class UsersController < ApplicationController
   end
 
   private
+
+  def user_params
+      params.require(:users).permit(:email, :password, :password_confirmation, :created_at, :updated_at,
+       :firstname, :lastname, :typeofuser)
+  end
 
   def edit
     @users = User.find(params[:id])
