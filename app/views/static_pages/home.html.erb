@@ -50,32 +50,29 @@
 
 </head>
 
+<!-- Header -->
+<div class="intro-header">
+		<div class="containerPhoto">
+			<div class="row">
+				<div class="intro-message">
+						<h1>Rate My Lease</h1>
+						<ul class="list-inline">
+								<li>
+									<%= link_to 'Login', new_user_session_path, :class => "btn btn-active btn-lg customButtonLogin"%>
+								</li>
+								<li>
+									<%= link_to "Sign Up", new_user_registration_path, :class => "btn btn-active btn-lg customButtonSignup"%>
+								</li>
+						</ul>
+				</div>
+			</div>
+
+		</div>
+		<!-- /.container -->
+
+</div>
 <body>
 
-    <!-- Header -->
-    <div class="intro-header">
-        <div class="container">
-
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="intro-message">
-                        <h1>Rate My Lease</h1>
-												<ul class="list-inline">
-														<li>
-															<%= link_to 'Login', new_user_session_path, :class => "btn btn-active btn-lg customButtonWidth"%>
-														</li>
-														<li>
-															<%= link_to "Sign Up", new_user_registration_path, :class => "btn btn-active btn-lg customButtonWidth"%>
-														</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-        <!-- /.container -->
-
-    </div>
     <!-- /.intro-header -->
 
     <!-- Page Content -->
