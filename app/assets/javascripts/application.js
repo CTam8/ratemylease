@@ -21,34 +21,34 @@
 // = require gmaps/google
 
 
-var $j = jQuery.noConflict();
-$j("#modal_trigger").leanModal({
-        top: 100,
-        overlay: 0.6,
-        closeButton: ".modal_close"
-});
-
-$j(function() {
-        // Calling Login Form
-        $j("#login_form").click(function() {
-                $j(".social_login").hide();
-                $j(".user_login").show();
-                return false;
-        });
-
-        // Calling Register Form
-        $j("#register_form").click(function() {
-                $j(".social_login").hide();
-                $j(".user_register").show();
-                $j(".header_title").text('Register');
-                return false;
-        });
-
-        // Going back to Social Forms
-        $j(".back_btn").click(function() {
-                $j(".user_login").hide();
-                $j(".social_login").show();
-                $j(".header_title").text('Login');
-                return false;
-        });
-});
+// var $j = jQuery.noConflict();
+// $j("#modal_trigger").leanModal({
+//         top: 100,
+//         overlay: 0.6,
+//         closeButton: ".modal_close"
+// });
+//
+// $j(function() {
+//         // Calling Login Form
+//         $j("#login_form").click(function() {
+//                 $j(".social_login").hide();
+//                 $j(".user_login").show();
+//                 return false;
+//         });
+//
+//         // Calling Register Form
+//         $j("#register_form").click(function() {
+//                 $j(".social_login").hide();
+//                 $j(".user_register").show();
+//                 $j(".header_title").text('Register');
+//                 return false;
+//         });
+//
+//         // Going back to Social Forms
+//         $j(".back_btn").click(function() {
+//                 $j(".user_login").hide();
+//                 $j(".social_login").show();
+//                 $j(".header_title").text('Login');
+//                 return false;
+//         });
+// });

@@ -43,22 +43,66 @@
               </tr>
               <tr>
                 <td><strong>Utilities</strong></td>
-                <td><%= @lease.utilities %></td>
+                <td>
+                  <% if @lease.utilities==true %>
+                  Yes
+                  <% else %>
+                  No
+                  <% end %>
+                </td>
               </tr>
               <tr>
                 <td><strong>Internet</strong></td>
-                <td><%= @lease.internet %></td>
+                <td>
+                  <% if @lease.internet==true %>
+                  Yes
+                  <% else %>
+                  No
+                  <% end %>
+                </td>
+              </tr>
+              <tr>
+                <td><strong>Laundry</strong></td>
+                <td>
+                  <% if @lease.laundry==true %>
+                  Yes
+                  <% else %>
+                  No
+                  <% end %>
+                </td>
+              </tr>
+              <tr>
+                <td><strong>Furnished</strong></td>
+                <td>
+                  <% if @lease.furnished==true %>
+                  Yes
+                  <% else %>
+                  No
+                  <% end %>
+                </td>
               </tr>
             </tbody>
           </table>
           </div>
         </div>
-        <%= image_tag @lease.image_url, :class => "image-container" %>
-      </div>
+          <!-- <div id="myCarousel" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+              <li data-target = "#myCarousel" data-slide-to = "0" class = "active"></li>
+              <li data-target = "#myCarousel" data-slide-to = "1"></li>
+              <li data-target = "#myCarousel" data-slide-to = "2"></li>
+            </ol>
+            <div class="carousel-inner">
+              <div class="item active">
+                <img src = "images/beach.jpg" alt = "Beach" class = "img-responsive"/>
+              </div>
+            </div>
+          </div> -->
       <div>
-        <h2>Average Rating</h2>
-        <div class="average-review-rating" data-score= "<%= @avg_rating %>"></div>
-        <span><%= @lease.reviews.count %></span>
+        <p>Average Rating</p>
+        <div class="average-review-rating" data-score= "<%= @avg_rating %>">
+          <span><%= @lease.reviews.count %></span>
+        </div>
+
       </div>
       <div id="marker" style='width: 500px; height: 400px;'></div>
 
