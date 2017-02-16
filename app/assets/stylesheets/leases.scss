@@ -70,6 +70,13 @@ html, body {
     width: 345px;
   }
 
+  .markerInfoWindow {
+    width: 200px;
+    height: 70px;
+    text-align: center;
+    font-family: 'Varela Round';
+  }
+
   abbr[title="required"] {
     display: none;
   }

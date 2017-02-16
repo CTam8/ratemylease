@@ -33,6 +33,12 @@ class ApplicationController < ActionController::Base
     leases_path
   end
 
+  def is_current(path)
+    if request.request_uri == path
+        return 'current'
+    end
+end
+
   # def configure_permitted_parameters
   #   devise_parameter_sanitizer.permit(:sign_in, keys: [:email, :password, :password_confirmation, :typeofuser, :avatar, :first_name, :last_name, :remember_me])
   #   # devise_parameter_sanitizer.permit( :account_update, keys: [:avatar])

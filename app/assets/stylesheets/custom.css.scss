@@ -67,8 +67,12 @@ p {
   &:hover {
   text-decoration: none;
   text-align: center;
+  padding-top: 2px;
 }
 }
+
+
+
 
 .container {
   padding: 12px;
@@ -78,10 +82,14 @@ p {
 
 .navbar {
   position: relative;
-  padding: 10px;
-  margin-bottom: 20px;
+  padding: 5px;
   border: 1px solid transparent;
 }
+
+.navbar-nav > li > a {
+padding: 10px;
+}
+
 
 
 /* footer */
@@ -280,10 +288,11 @@ a.btn_red {
   background-color: #4CAF50;
 }
 
-.facebookButtonColor {
-  color: white;
-}
 
+
+.headerSections {
+  padding-top: 0;
+}
 .login {
   background-color: #222;
   width: 100%;
@@ -302,8 +311,6 @@ a.btn_red {
 .newUser {
   color: #428bca;
 }
-
-
 
 legend {
   font-size: 1em;

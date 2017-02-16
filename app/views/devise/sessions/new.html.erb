@@ -9,14 +9,13 @@
     <%= form_for resource, as: resource_name, url: session_path(resource_name),
                   html: { class: "form-horizontal center"} do |f| %>
 
-      <p class="notice"><%= notice %></p>
-      <p class="alert"><%= alert %></p>
+      <br />
+      <br />
 
       <h2>Log In To Rate My Lease</h2>
+      <br />
 
-      <p> New User? &nbsp <%= link_to "Create New Account", new_user_registration_path, :class=>"newUser" %> </p>
-
-        <%= link_to user_facebook_omniauth_authorize_path, :class => "btn facebookButtonColor" do %>
+        <%= link_to user_facebook_omniauth_authorize_path, :class => "btn buttonTextColorWhite" do %>
         <span class="icon"><i class="fa fa-facebook-square"></i></span> <span class="icon_title">| Log In With Facebook</span>
         <% end %>
 
@@ -40,10 +39,13 @@
 
       </div> -->
 
-      <div class="actions">
-        <%= f.submit "Log in", class: "btn btn-success btn-lg btn-block login" %>
+      <div class="actions buttonTextColorWhite">
+        <%= f.submit "Log In", class: "btn btn-lg btn-block login" %>
       </div>
     <% end %>
+    <br />
+    <p> New User? &nbsp <%= link_to "Create New Account", new_user_registration_path, :class=>"newUser" %> </p>
+
 </div>
 </html>
 <!-- <%= link_to user_google_oauth2_omniauth_authorize_path do %>
