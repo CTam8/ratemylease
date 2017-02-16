@@ -6,8 +6,9 @@
 <html>
 <body>
 <header class="navbar navbar-fixed-top navbar-inverse">
+
   <div class="container">
-    <%= link_to "Rate My Lease", root_path, id: "logo" %>
+    <%= link_to "Rate My Lease", leases_path, id: "logo"%>
 
     <nav>
       <ul class="nav navbar-nav navbar-right">
@@ -130,17 +131,16 @@
         				</div>
               <%end%> -->
 
-          <li>
+          <!-- <li>
             <%= link_to 'Login', new_user_session_path  %>
           </li>
           <li>
             <%= link_to "Sign Up", new_user_registration_path %>
-          </li>
+          </li> -->
         <% end %>
       </ul>
     </nav>
 </header>
-</div>
 </body>
 </html>
 <!--

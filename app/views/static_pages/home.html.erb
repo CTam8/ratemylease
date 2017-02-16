@@ -20,7 +20,9 @@
 # </html> -->
 
 <!DOCTYPE html>
-<script type="text/javascript" src="/assets/boostrap.min.js"></script>
+<script type="text/javascript" src="/assets/bootstrap.min.js"></script>
+<link href='http://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
+
 
 <html lang="en">
 
@@ -34,8 +36,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <!-- Bootstrap Core CSS -->
-    <link href="/bootstrap.min.css" rel="stylesheet">
+
 
     <!-- Custom CSS -->
     <!-- Custom Fonts -->
@@ -52,16 +53,16 @@
 
 <!-- Header -->
 <div class="intro-header">
-		<div class="containerPhoto">
+		<div class="container">
 			<div class="row">
 				<div class="intro-message">
 						<h1>Rate My Lease</h1>
 						<ul class="list-inline">
 								<li>
-									<%= link_to 'Login', new_user_session_path, :class => "btn btn-active btn-lg customButtonLogin"%>
+									<%= link_to 'Login', new_user_session_path, :class => "btn btn-lg customButtonLogin"%>
 								</li>
 								<li>
-									<%= link_to "Sign Up", new_user_registration_path, :class => "btn btn-active btn-lg customButtonSignup"%>
+									<%= link_to "Sign Up", new_user_registration_path, :class => "btn btn-lg customButtonSignup"%>
 								</li>
 						</ul>
 				</div>

@@ -27,7 +27,11 @@ class ApplicationController < ActionController::Base
       if current_user && !current_user.email_verified?
         redirect_to finish_sign_up(current_user)
       end
-    end
+  end
+
+  def after_sign_in_path_for(resource)
+    leases_path
+  end
 
   # def configure_permitted_parameters
   #   devise_parameter_sanitizer.permit(:sign_in, keys: [:email, :password, :password_confirmation, :typeofuser, :avatar, :first_name, :last_name, :remember_me])

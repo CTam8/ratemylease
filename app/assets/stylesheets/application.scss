@@ -17,7 +17,7 @@
 @import "bootstrap-sprockets";
 
 body {
-        font-family: 'Source Sans Pro', sans-serif;
+  font-family: 'Varela Round';
         font-size: 14px;
         color: #666;
 }
@@ -41,46 +41,71 @@ body {
         top: 80px;
         background: #FFF;
 }
-
+.OtherPages {
+    width:30%;
+    padding: 10px;
+    margin:auto;
+}
 #modal_trigger {
 }
 
-.btn {
-        padding: 5px 5px;
-        background: #F4F4F2;
-}
-
-.btn_red {
-        background: #ED6347;
-        color: #FFF;
-}
-
-.btn:hover {
-        background: #E4E4E2;
-}
-
-.btn_red:hover {
-        background: #C12B05;
-}
+// .btn {
+//         padding: 5px 5px;
+//         background: #F4F4F2;
+// }
+//
+// .btn_red {
+//         background: #ED6347;
+//         color: #FFF;
+// }
+//
+//
+// .btn_red:hover {
+//         background: #C12B05;
+// }
 
 a.btn {
         text-align: center;
         text-decoration: none;
         overflow: auto;
         padding: 5px 5px;
+        color: white;
 }
 
 .customButtonLogin {
+    color: white;
     width: 85px !important;
-    position:relative;
+    position:absolute;
     top:0;
     right:15%;
+    background: none;
+    border: none;
+    cursor:pointer;
+    overflow: hidden;
+    border-radius: 0;
+}
+.customButtonLogin:hover {
+  color: white;
+  background: none;
+  border-bottom: 2px solid white;
+
 }
 .customButtonSignup {
     width: 85px !important;
-    position:relative;
+    position:absolute;
     top:0;
-    right:5%;
+    right:6%;
+    background-color: Transparent;
+    background-repeat:no-repeat;
+    border: white;
+    cursor:pointer;
+    overflow: hidden;
+    border: 2px solid white
+}
+
+.customButtonSignup:hover {
+  background: #F4F4F2;
+
 }
 
 a.btn_red {
