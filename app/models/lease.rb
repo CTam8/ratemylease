@@ -10,9 +10,9 @@ class Lease < ApplicationRecord
   validates_presence_of :university, :message => "University can't be blank"
   validates_presence_of :numberofbedrooms, :message => "Number of Bedrooms can't be blank"
   validates_presence_of :numberofbathrooms, :message => "Number of Bathrooms can't be blank"
-  validates_presence_of :laundry, :message => "Laundry can't be blank"
-  validates_presence_of :typeOfHouse, :message => "Type can't be blank"
-  validates_presence_of :furnished, :message => "Furnished? can't be blank"
+  # validates_presence_of :laundry, :message => "Laundry can't be blank"
+  # validates_presence_of :typeOfHouse, :message => "Type can't be blank"
+  # validates_presence_of :furnished, :message => "Furnished? can't be blank"
 
   PROVINCE = [
     ["Alberta"],

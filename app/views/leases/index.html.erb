@@ -9,8 +9,8 @@
 
 </head>
 <body>
-  <span class="checkbox" id="utilities-filter">Filter Utilities</span>
-  <%= check_box_tag 'ratings[]', "R" %>
+  <!-- <span class="checkbox" id="utilities-filter">Filter Utilities</span>
+  <%= check_box_tag 'ratings[]', "R" %> -->
 
   <div id='map-canvas'>
     <input id="pac-input" class="controls" type="text" placeholder="Search Box"/>
@@ -99,6 +99,28 @@
               marker.visible = true;
       });
   });
+  </script>
+
+  <script>
+    (function($){
+      $('.review-rating').raty({
+        readOnly: true,
+        score: function() {
+          return $(this).attr('data-score');
+        },
+        path: '/assets'
+      });
+      })(jQuery);
+
+      (function($){
+        $('.average-review-rating').raty({
+          readOnly: true,
+          path: '/assets',
+          score: function() {
+            return $(this).attr('data-score')
+          }
+        });
+      })(jQuery);
   </script>
 </body>
 </html>

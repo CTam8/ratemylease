@@ -19,6 +19,8 @@ class LeasesController < ApplicationController
 
   def new
     @lease = Lease.new
+    render :layout => "leaseCreatePageLayout"
+
   end
 
   def create
@@ -40,6 +42,11 @@ class LeasesController < ApplicationController
     else
       @avg_rating = @lease.reviews.average(:rating).round(2)
     end
+
+
+
+    render :layout => "leaseShowPageLayout"
+
   end
 
   def search
