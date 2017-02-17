@@ -1,4 +1,5 @@
 <% provide(:title, "New Lease") %>
+
 <!DOCTYPE html>
 
 <html>
@@ -65,11 +66,7 @@
 
 			<%= f.file_field :image%>
 
-			<div class="action_btns">
-				<div class="one_half">
-					<%= f.button :submit %>
-				</div>
-			</div>
+			<%= f.button :submit, :class=>"createbtn" %>
 
 			<% end %>
 

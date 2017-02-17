@@ -3,15 +3,28 @@
 <script type="text/javascript" src="/assets/jquery.leanModal.min.js"></script>
 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" />
+<link href='http://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
+
 <html>
 <body>
 <header class="navbar navbar-fixed-top navbar-inverse">
-  <div class="container">
-    <%= link_to "Rate My Lease", root_path, id: "logo" %>
 
-    <nav>
+  <% if current_page?(new_user_session_path) || current_page?(new_user_registration_path)%>
+  <div class="container">
+    <%= link_to "Rate My Lease", root_path, id: "logo"%>
+
+  </div>
+  <% else %>
+
+
+
+  <nav>
+      <% if user_signed_in? %>
+
+      <%= link_to "Rate My Lease", leases_path, id: "logo"%>
+
       <ul class="nav navbar-nav navbar-right">
-        <% if user_signed_in? %>
+
         <li>
           <%= link_to "Create a Lease", new_lease_path %>
         </li>
@@ -25,124 +38,127 @@
         <li>
           <%= link_to "Settings", edit_user_registration_path(current_user) %>
         </li>
-        <li>
-        <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
-        </li>
-        <li class="dropdown">
-					<a href="#" class="dropdown-toggle" data-toggle="dropdown"> Account <span class="caret"></span> </a>
-					<ul class="dropdown-menu">
-            <li>
-							<%= link_to "Profile", current_user %>
-						</li>
-						<li>
-							<%= link_to "Settings", edit_user_registration_path(current_user) %>
-						</li>
 
-						<li class="divider"></li>
-						<li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown"> Account <span class="caret"></span> </a>
+          <ul class="dropdown-menu">
+            <li>
+              <%= link_to "Profile", current_user %>
+            </li>
+            <li>
+              <%= link_to "Settings", edit_user_registration_path(current_user) %>
+            </li>
+
+            <li class="divider"></li>
+            <li>
             <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
             </li>
-					</ul>
-				</li>
+          </ul>
+        </li>
         <script>
           var $j = jQuery.noConflict();
           $j(document).ready(function(){
             $j(".dropdown-toggle").dropdown();
           });
         </script>
-        <% else %>
-        <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-          <li>
-        		  <a id= "modal_trigger" href="#modal"> Login </a>
-          </li>
-                <div id="modal" class="popupContainer" style="display:none;">
-        					<header class="popupHeader">
-        						<span class="header_title">Login</span>
-        						<span class="modal_close"><i class="fa fa-times"></i></span>
-        					</header>
 
-        					<section class="popupBody">
-        						<!-- Social Login -->
-        						<div class="social_login">
-        							<div class="">
-                        <%= link_to user_facebook_omniauth_authorize_path do %>
-                          <span class="icon"><i class="fa fa-facebook-square"></i></span> <span class="icon_title">| Continue with Facebook</span>
-                        <% end %>
-                        <%= link_to user_google_oauth2_omniauth_authorize_path do %>
-                          <span class="icon"><i class="fa fa-google-plus"></i></span> <span class="icon_title">| Continue with Google Plus</span> </a>
-                        <% end %>
-                      	</div>
+      <% else %>
 
-        							<div class="centeredText">
-        								<span>Or by Email</span>
-        							</div>
+      <!-- <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+        <li>
+            <a id= "modal_trigger" href="#modal"> Login </a>
+        </li>
+              <div id="modal" class="popupContainer" style="display:none;">
+                <header class="popupHeader">
+                  <span class="header_title">Login</span>
+                  <span class="modal_close"><i class="fa fa-times"></i></span>
+                </header>
 
-        							<div class="action_btns">
-        								<div class="one_half">
-        									<a href="#" id="login_form" class="btn">Login</a>
-        								</div>
-        								<div class="one_half last">
-                          <%= link_to "Sign Up", new_user_registration_path %>
-        								<!--<a href="#" id="register_form" class="btn">Sign up</a>-->
-        								</div>
-        							</div>
-        						</div>
+                <section class="popupBody"> -->
+                  <!-- Social Login -->
 
-        						<!-- Username & Password Login form -->
-        						<div class="user_login">
-                      <%= form_for resource, as: resource_name, url: session_path(resource_name),
-                                    html: { class: "form-horizontal center"} do |f| %>
+                  <!-- <div class="social_login">
+                    <div class="">
+                      <%= link_to user_facebook_omniauth_authorize_path do %>
+                        <span class="icon"><i class="fa fa-facebook-square"></i></span> <span class="icon_title">| Continue with Facebook</span>
+                      <% end %>
+                      <%= link_to user_google_oauth2_omniauth_authorize_path do %>
+                        <span class="icon"><i class="fa fa-google-plus"></i></span> <span class="icon_title">| Continue with Google Plus</span> </a>
+                      <% end %>
+                      </div>
 
+                    <div class="centeredText">
+                      <span>Or by Email</span>
+                    </div>
+
+                    <div class="action_btns">
+                      <div class="one_half">
+                        <a href="#" id="login_form" class="btn">Login</a>
+                      </div>
+                      <div class="one_half last">
+                        <%= link_to "Sign Up", new_user_registration_path %>
+                      <a href="#" id="register_form" class="btn">Sign up</a>
+                      </div>
+                    </div>
+                  </div> -->
+
+                  <!-- Username & Password Login form -->
+                  <!-- <div class="user_login">
+                    <%= form_for resource, as: resource_name, url: session_path(resource_name),
+                                  html: { class: "form-horizontal center"} do |f| %>
+
+                      <div class="form-group">
+                        <%= f.text_field :email, autofocus: true, placeholder: "Email", class: "form-control" %>
+                      </div>
+
+                      <div class="form-group">
+                        <%= f.password_field :password, autocomplete: "off", placeholder: "Password", class: "form-control" %>
+                      </div>
+
+                      <% if devise_mapping.rememberable? -%>
                         <div class="form-group">
-                          <%= f.text_field :email, autofocus: true, placeholder: "Email", class: "form-control" %>
-                        </div>
-
-                        <div class="form-group">
-                          <%= f.password_field :password, autocomplete: "off", placeholder: "Password", class: "form-control" %>
-                        </div>
-
-                        <% if devise_mapping.rememberable? -%>
-                          <div class="form-group">
-                            <div class="col-sm-10">
-                              <div class="checkbox">
-                                <label>
-                                  <%= f.check_box :remember_me %> Remember me
-                                </label>
-                              </div>
+                          <div class="col-sm-10">
+                            <div class="checkbox">
+                              <label>
+                                <%= f.check_box :remember_me %> Remember me
+                              </label>
                             </div>
                           </div>
+                        </div>
 
-        								<div class="action_btns">
-        									<div class="one_half">
-        										<a href="#" class="btn back_btn"><i class="fa fa-angle-double-left"></i> Back</a>
-        									</div>
-                          <div class="actions">
-                            <%= f.submit "Log in", class: "btn btn-success btn-lg btn-block" %>
-                          </div>
-        								</div>
-        								<% end %>
+                      <div class="action_btns">
+                        <div class="one_half">
+                          <a href="#" class="btn back_btn"><i class="fa fa-angle-double-left"></i> Back</a>
+                        </div>
+                        <div class="actions">
+                          <%= f.submit "Log in", class: "btn btn-success btn-lg btn-block" %>
+                        </div>
+                      </div>
+                      <% end %>
 
-        							<a href="#" class="forgot_password">Forgot password?</a>
-                      <%end%>
-        						</div>
-        					</section>
-        				</div>
-              <%end%>
+                    <a href="#" class="forgot_password">Forgot password?</a>
+                    <%end%>
+                  </div>
+                </section>
+              </div>
+            <%end%> -->
 
-          <li>
+        <!-- <li>
           <%= link_to 'Login', new_user_session_path  %>
-          </li>
-          <li>
-            <%= link_to "Sign Up", new_user_registration_path %>
-          </li>
-        <% end %>
-      </ul>
-    </nav>
+        </li>
+        <li>
+          <%= link_to "Sign Up", new_user_registration_path %>
+        </li> -->
+
+      <% end %>
+    </ul>
+  </nav>
+  <% end %>
+
 </header>
-</div>
 </body>
 </html>
-
+<!--
 <script type="text/javascript">
   $("#modal_trigger").leanModal({
     top : 200,
@@ -165,4 +181,4 @@
       return false;
     });
   })
-</script>
+</script> -->

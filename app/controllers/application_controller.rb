@@ -27,7 +27,17 @@ class ApplicationController < ActionController::Base
       if current_user && !current_user.email_verified?
         redirect_to finish_sign_up(current_user)
       end
+  end
+
+  def after_sign_in_path_for(resource)
+    leases_path
+  end
+
+  def is_current(path)
+    if request.request_uri == path
+        return 'current'
     end
+end
 
 
   def configure_permitted_parameters

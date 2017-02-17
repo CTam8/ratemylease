@@ -1,12 +1,16 @@
 <% provide(:title, "All Leases") %>
+<link href='http://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
+
 <html>
 <head>
   <script type="text/javascript" src="//maps.google.com/maps/api/js?key=AIzaSyDDVHE7vDIfbP8Jzh5lOO_tRwSsaBU7LA4&libraries=places&callback=initAutocomplete" async defer></script>
   <script src="//cdn.rawgit.com/mahnunchik/markerclustererplus/master/dist/markerclusterer.min.js"></script>
+  <link href='http://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
+
 </head>
 <body>
-  <span class="checkbox" id="utilities-filter">Filter Utilities</span>
-  <%= check_box_tag 'ratings[]', "R" %>
+  <!-- <span class="checkbox" id="utilities-filter">Filter Utilities</span>
+  <%= check_box_tag 'ratings[]', "R" %> -->
 
   <div id='map-canvas'>
     <input id="pac-input" class="controls" type="text" placeholder="Search Box"/>
@@ -82,7 +86,7 @@
 
       google.maps.event.addListener(marker, 'click', (function(marker, i) {
         return function() {
-          infowindow.setContent('<div style="width: 200px; height: 70px; text-align: center;">' + locations[i][0] + "<br />" + locations[i][3] + ", " + locations[i][4] + "<br />" + locations[i][5] + "<br />" + locations[i][7]);
+          infowindow.setContent('<div class="markerInfoWindow";>' + locations[i][0] + "<br />" + locations[i][3] + ", " + locations[i][4] + "<br />" + locations[i][5] + "<br />" + locations[i][7]);
           infowindow.open(map, marker);
         }
       })(marker, i));
@@ -95,6 +99,28 @@
               marker.visible = true;
       });
   });
+  </script>
+
+  <script>
+    (function($){
+      $('.review-rating').raty({
+        readOnly: true,
+        score: function() {
+          return $(this).attr('data-score');
+        },
+        path: '/assets'
+      });
+      })(jQuery);
+
+      (function($){
+        $('.average-review-rating').raty({
+          readOnly: true,
+          path: '/assets',
+          score: function() {
+            return $(this).attr('data-score')
+          }
+        });
+      })(jQuery);
   </script>
 </body>
 </html>
