@@ -1,17 +1,19 @@
 <!DOCTYPE html>
 <html>
+
   <head>
     <title><%= full_title(yield(:title)) %></title>
-        <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => false %>
-        <%= javascript_include_tag 'application',   'data-turbolinks-track' => false %>
-        <%= csrf_meta_tags %>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => false %>
+    <%= javascript_include_tag 'application',   'data-turbolinks-track' => false %>
+    <%= csrf_meta_tags %>
 
-        <meta name="csrf-token" content="<%= form_authenticity_token %>" />
-        <meta name="csrf-param" content="authenticity_token" />
+    <meta name="csrf-token" content="<%= form_authenticity_token %>" />
+    <meta name="csrf-param" content="authenticity_token" />
   </head>
-    <body>
-        <%= render 'layouts/header' %>
-        <div class="containerShow">
+  
+  <body>
+      <%= render 'layouts/header' %>
+      <div class="containerShow">
 
         <% flash.each do |message_type, message| %>
             <div class="alert alert-<%= message_type %>"><%= message %></div>
@@ -19,6 +21,7 @@
         <%= yield %>
         <%= render 'layouts/footer' %>
         <!-- <%= debug(params) if Rails.env.development? %> -->
-        </div>
-    </body>
+      </div>
+  </body>
+
 </html>

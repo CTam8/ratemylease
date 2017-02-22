@@ -2,125 +2,244 @@
 <link href='http://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
 
 <html>
-<head>
-  <script type="text/javascript" src="//maps.google.com/maps/api/js?key=AIzaSyDDVHE7vDIfbP8Jzh5lOO_tRwSsaBU7LA4&libraries=places&callback=initAutocomplete" async defer></script>
-  <script src="//cdn.rawgit.com/mahnunchik/markerclustererplus/master/dist/markerclusterer.min.js"></script>
-  <link href='http://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
+  <head>
+    <script type="text/javascript" src="//maps.google.com/maps/api/js?key=AIzaSyDDVHE7vDIfbP8Jzh5lOO_tRwSsaBU7LA4&libraries=places&callback=initAutocomplete" async defer></script>
+    <script src="//cdn.rawgit.com/mahnunchik/markerclustererplus/master/dist/markerclusterer.min.js"></script>
+    <link href='http://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
+  </head>
+  <body>
 
-</head>
-<body>
-  <!-- <span class="checkbox" id="utilities-filter">Filter Utilities</span>
-  <%= check_box_tag 'ratings[]', "R" %> -->
+      <div id='map-canvas'>
+        <div class="top-search-bar">
+          <!-- <div class="filter-box"> -->
+            <select id="numberDropdown" class="dropdown" onchange="numberofbathroomsFilter()">
+              <option selected value="All">Any</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+              <option value="9">9</option>
+              <option value="10">10</option>
+            </select>
+            <label class="checkbox-inline content"><input type="checkbox" onchange="utilFilter()" value="">Utilities</label>
+            <label class="checkbox-inline content"><input type="checkbox" onchange="internetFilter()">Internet</label>
+            <label class="checkbox-inline content"><input type="checkbox" onchange="laundryFilter()">Laundry</label>
+            <label class="checkbox-inline content"><input type="checkbox" onchange="furnishedFilter()">Furnished</label>
 
-  <div id='map-canvas'>
-    <input id="pac-input" class="controls" type="text" placeholder="Search Box"/>
-    <div id="map" style="width: 100%; height: 100%;"></div>
-  </div>
+          <!-- <button type="button" class="btn btn-default col-sm-2"">Utilities</button>
+          <button type="button" class="btn btn-default col-sm-2" onclick="internetFilter()">Internet</button>
+
+          <button type="button" class="btn btn-default col-sm-2" onclick="markerProperties()">markerProperties</button> -->
+        </div>
+        <input id="pac-input" class="controls" type="text" placeholder="Search Box"/>
+        <div id="map"></div>
+      </div>
 
 
-  <script type="text/javascript">
 
-  function initAutocomplete() {
-    var locations = <%=raw @markers %>
-    var centerofmap = <%=raw @center %>
-  	var latlang = new google.maps.LatLng(centerofmap[0], centerofmap[1]);
-  	var markers = [];
-  	var map = new google.maps.Map(document.getElementById('map'), {
-  		// scrollwheel: true,
-  		zoom: 10,
-  		center: latlang,
-  		mapTypeId: google.maps.MapTypeId.ROADMAP
-    	});
 
-    // Create the search box and link it to the UI element.
-    var input = document.getElementById('pac-input');
-    var searchBox = new google.maps.places.SearchBox(input);
-    map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+    <script type="text/javascript">
+    var markersArray = [];
 
-    // Bias the SearchBox results towards current map's viewport.
-    map.addListener('bounds_changed', function() {
-      searchBox.setBounds(map.getBounds());
-    });
+    function initAutocomplete() {
+      var locations = <%=raw @markers %>
+      var centerofmap = [43.6532, -79.3672643];
+    	var latlang = new google.maps.LatLng(centerofmap[0], centerofmap[1]);
+    	var map = new google.maps.Map(document.getElementById('map'), {
+    		// scrollwheel: true,
+    		zoom: 10,
+    		center: latlang,
+    		mapTypeId: google.maps.MapTypeId.ROADMAP
+      	});
 
-	  // [START region_getplaces]
-	  // Listen for the event fired when the user selects a prediction and retrieve
-	  // more details for that place.
-	  searchBox.addListener('places_changed', function() {
-	  	var places = searchBox.getPlaces();
-	  	if (places.length == 0) {
-	  		return;
-	  	}
+      // Create the search box and link it to the UI element.
+      var input = document.getElementById('pac-input');
+      var searchBox = new google.maps.places.SearchBox(input);
+      map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
 
-	    // For each place, get the icon, name and location.
-	    var bounds = new google.maps.LatLngBounds();
-	    places.forEach(function(place) {
-	    	var icon = {
-	    		url: place.icon,
-	    		size: new google.maps.Size(71, 71),
-	    		origin: new google.maps.Point(0, 0),
-	    		anchor: new google.maps.Point(17, 34),
-	    		scaledSize: new google.maps.Size(38, 38)
-	    	};
-
-        if (place.geometry.viewport) {
-          // Only geocodes have viewport.
-          bounds.union(place.geometry.viewport);
-        } else {
-      	bounds.extend(place.geometry.location);
-        }
-      });
-	    map.fitBounds(bounds);
-	  });
-	  // [END region_getplaces]
-
-    var infowindow = new google.maps.InfoWindow();
-
-    var marker, i;
-
-    for (i = 0; i < locations.length; i++) {
-      marker = new google.maps.Marker({
-        position: new google.maps.LatLng(locations[i][1], locations[i][2]),
-        map: map,
-        utilities: locations[i][6], //checks if the marker has utilities (attempting for filtering)
+      // Bias the SearchBox results towards current map's viewport.
+      map.addListener('bounds_changed', function() {
+        searchBox.setBounds(map.getBounds());
       });
 
-      google.maps.event.addListener(marker, 'click', (function(marker, i) {
-        return function() {
-          infowindow.setContent('<div class="markerInfoWindow";>' + locations[i][0] + "<br />" + locations[i][3] + ", " + locations[i][4] + "<br />" + locations[i][5] + "<br />" + locations[i][7]);
-          infowindow.open(map, marker);
-        }
-      })(marker, i));
+  	  // [START region_getplaces]
+  	  // Listen for the event fired when the user selects a prediction and retrieve
+  	  // more details for that place.
+  	  searchBox.addListener('places_changed', function() {
+  	  	var places = searchBox.getPlaces();
+  	  	if (places.length == 0) {
+  	  		return;
+  	  	}
 
-    }
-  }
+  	    // For each place, get the icon, name and location.
+  	    var bounds = new google.maps.LatLngBounds();
+  	    places.forEach(function(place) {
+  	    	var icon = {
+  	    		url: place.icon,
+  	    		size: new google.maps.Size(71, 71),
+  	    		origin: new google.maps.Point(0, 0),
+  	    		anchor: new google.maps.Point(17, 34),
+  	    		scaledSize: new google.maps.Size(38, 38)
+  	    	};
 
-  $(document).on('click', '#utilities-filter', function(){
-      $.each(map.markers, function(i, marker) {
-              marker.visible = true;
-      });
-  });
-  </script>
-
-  <script>
-    (function($){
-      $('.review-rating').raty({
-        readOnly: true,
-        score: function() {
-          return $(this).attr('data-score');
-        },
-        path: '/assets'
-      });
-      })(jQuery);
-
-      (function($){
-        $('.average-review-rating').raty({
-          readOnly: true,
-          path: '/assets',
-          score: function() {
-            return $(this).attr('data-score')
+          if (place.geometry.viewport) {
+            // Only geocodes have viewport.
+            bounds.union(place.geometry.viewport);
+          } else {
+        	bounds.extend(place.geometry.location);
           }
         });
-      })(jQuery);
-  </script>
-</body>
+  	    map.fitBounds(bounds);
+  	  });
+  	  // [END region_getplaces]
+
+      var infowindow = new google.maps.InfoWindow();
+      var marker, i;
+
+      for (i = 0; i < locations.length; i++) {
+        marker = new google.maps.Marker({
+          position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+          map: map,
+          address: locations[i][0],
+          utilities: locations[i][6], //checks if the marker has utilities (attempting for filtering)
+          internet: locations[i][7], //checks if the marker has utilities (attempting for filtering)
+          laundry: locations[i][8], //checks if the marker has utilities (attempting for filtering)
+          furnished: locations[i][9], //checks if the marker has utilities (attempting for filtering)
+          numberofbathrooms: locations[i][10], //checks if the marker has utilities (attempting for filtering)
+          numberofbedrooms: locations[i][11], //checks if the marker has utilities (attempting for filtering)
+          numberofparkingspots: locations[i][12], //checks if the marker has utilities (attempting for filtering)
+          typeOfHouse: locations[i][13], //checks if the marker has utilities (attempting for filtering)
+          university: locations[i][14], //checks if the marker has utilities (attempting for filtering)
+
+        });
+
+        google.maps.event.addListener(marker, 'click', (function(marker, i) {
+          return function() {
+            infowindow.setContent('<div class="markerInfoWindow";>' + locations[i][0] + "<br />" + locations[i][3] + ", " + locations[i][4] + "<br />" + locations[i][5] + "<br />" + locations[i][15]);
+            infowindow.open(map, marker);
+          }
+        })(marker, i));
+
+        markersArray.push(marker);
+      }
+    }
+
+    function utilFilter() {
+      // markersArray[marker]
+      for (marker in markersArray) {
+
+        if (markersArray[marker].utilities == true)
+        {
+          markersArray[marker].setVisible(true)
+        }
+        else {
+          // console.log(markersArray[marker].utilities == "true")
+
+          markersArray[marker].setVisible(false)
+        }
+        // console.log(markersArray[marker]);
+
+      }
+    }
+
+    function internetFilter() {
+      // console.log(markersArray[marker]);
+      for (marker in markersArray) {
+        if (markersArray[marker].internet == true)
+        {
+          markersArray[marker].setVisible(true)
+        }
+        else {
+          markersArray[marker].setVisible(false)
+        }
+      }
+    }
+
+    function laundryFilter() {
+      // console.log(markersArray[marker]);
+      for (marker in markersArray) {
+        if (markersArray[marker].laundry == true)
+        {
+          markersArray[marker].setVisible(true)
+        }
+        else {
+          markersArray[marker].setVisible(false)
+        }
+      }
+    }
+
+    function furnishedFilter() {
+      // console.log(markersArray[marker]);
+      for (marker in markersArray) {
+        if (markersArray[marker].furnished == true)
+        {
+          markersArray[marker].setVisible(true)
+        }
+        else {
+          markersArray[marker].setVisible(false)
+        }
+      }
+    }
+
+    function numberofbathroomsFilter() {
+      // console.log(markersArray[marker]);
+      myVar = document.getElementById('numberDropdown').value
+      for (marker in markersArray) {
+        if (myVar == 'All') {
+          markersArray[marker].setVisible(true)
+        }
+        else {
+          if(markersArray[marker].numberofbathrooms == myVar)
+          {
+            markersArray[marker].setVisible(true)
+          }
+          else {
+            markersArray[marker].setVisible(false)
+          }
+        }
+      }
+    }
+
+    // Function to send markers and view attributes to console
+    function markerProperties() {
+      // for (marker in markersArray) {
+      //   console.log(markersArray[marker])
+      // }
+
+    }
+
+    // var select = '';
+    // for (i=1;i<=10;i++){
+    //     select += '<option val=' + i + '>' + i + '</option>';
+    // }
+    // $('#numberDropdown').html(select);
+
+    </script>
+
+    <!-- <script>
+      (function($){
+        $('.review-rating').raty({
+          readOnly: true,
+          score: function() {
+            return $(this).attr('data-score');
+          },
+          path: '/assets'
+        });
+        })(jQuery);
+
+        (function($){
+          $('.average-review-rating').raty({
+            readOnly: true,
+            path: '/assets',
+            score: function() {
+              return $(this).attr('data-score')
+            }
+          });
+        })(jQuery);
+    </script> -->
+  </body>
 </html>

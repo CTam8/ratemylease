@@ -1,11 +1,16 @@
 Rails.application.routes.draw do
 
+  get 'images/index'
+
+  get 'images/create'
+
   root 'static_pages#home'
   get 'new_lease', :to => "leases#new"
   get 'leases', :to => "leases#index"
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
 
   resources :users
+  resources :images, only: [:index, :create]
 
   resources :leases do
     resources :reviews, except:[:index, :show]
