@@ -21,8 +21,8 @@
 
 <!DOCTYPE html>
 <script type="text/javascript" src="/assets/bootstrap.min.js"></script>
-<link href='http://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
-
+<link href='http://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'/>
+<link rel='stylesheet' ref'home_page.scss'/>
 
 <html lang="en">
 
@@ -56,7 +56,10 @@
 		<div class="container">
 			<div class="row">
 				<div class="intro-message">
+					<br><br><br>
 						<h1>Rate My Lease</h1>
+						<br><br><br><br>
+						<h3>Where you rate your Housing Experience<h3>
 						<ul class="list-inline">
 								<li>
 									<%= link_to 'Login', new_user_session_path, :class => "btn btn-lg customButtonLogin"%>
@@ -86,11 +89,11 @@
                 <div class="col-lg-5 col-sm-6">
                     <hr class="section-heading-spacer">
                     <div class="clearfix"></div>
-                    <h2 class="section-heading">Death to the Stock Photo:<br>Special Thanks</h2>
-                    <p class="lead">A special thanks to <a target="_blank" href="http://join.deathtothestockphoto.com/">Death to the Stock Photo</a> for providing the photographs that you see in this template. Visit their website to become a member.</p>
+                    <h2 class="section-heading lPad">Create a Lease</h2>
+                    <p class="lead lPad">Want to share your lease experience with others? Sign up, and create a lease with ease!</p>
                 </div>
                 <div class="col-lg-5 col-lg-offset-2 col-sm-6">
-                    <img class="img-responsive" src="images/ipad.png" alt="">
+                    <img class="img-responsive rPad" src="images/createLease.png" alt="">
                 </div>
             </div>
 
@@ -108,11 +111,11 @@
                 <div class="col-lg-5 col-lg-offset-1 col-sm-push-6  col-sm-6">
                     <hr class="section-heading-spacer">
                     <div class="clearfix"></div>
-                    <h2 class="section-heading">3D Device Mockups<br>by PSDCovers</h2>
-                    <p class="lead">Turn your 2D designs into high quality, 3D product shots in seconds using free Photoshop actions by <a target="_blank" href="http://www.psdcovers.com/">PSDCovers</a>! Visit their website to download some of their awesome, free photoshop actions!</p>
+                    <h2 class="section-heading rPad">Find a Lease</h2>
+                    <p class="lead rPad">Looking for a lease? Sign up and browse others' experiences with their leases to find your perfect place!</p>
                 </div>
                 <div class="col-lg-5 col-sm-pull-6  col-sm-6">
-                    <img class="img-responsive" src="../images/dog.png" alt="">
+                    <img class="img-responsive lPad" src="../images/viewLease.png" alt="">
                 </div>
             </div>
 
@@ -121,6 +124,8 @@
 
     </div>
     <!-- /.content-section-b -->
+		<div class="footer">
+		</div>
 
 </body>
 

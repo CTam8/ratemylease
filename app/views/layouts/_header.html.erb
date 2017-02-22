@@ -12,19 +12,12 @@
   <% if current_page?(new_user_session_path) || current_page?(new_user_registration_path)%>
   <div class="container">
     <%= link_to "Rate My Lease", root_path, id: "logo"%>
-
   </div>
   <% else %>
-
-
-
   <nav>
       <% if user_signed_in? %>
-
       <%= link_to "Rate My Lease", leases_path, id: "logo"%>
-
       <ul class="nav navbar-nav navbar-right">
-
         <li>
           <%= link_to "Create a Lease", new_lease_path %>
         </li>
