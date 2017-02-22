@@ -4,4 +4,6 @@ class StaticPagesController < ApplicationController
     render :layout => "homePageLayout"
   end
 
+  
+
 end

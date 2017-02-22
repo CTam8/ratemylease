@@ -6,6 +6,7 @@ class UsersController < ApplicationController
 
   def show
     @users = User.find(params[:id])
+    render :layout => "profileLayout"
   end
 
   private
