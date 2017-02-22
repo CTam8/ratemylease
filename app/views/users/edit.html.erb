@@ -4,7 +4,7 @@
 <div class="col-sm-4 col-sm-offset-4">
   <div class="light-well">
 
-    <%= form_for resource, as: resource_name, url: registration_path(resource_name),
+    <%= form_for resource, as: resource_name, url: session_path(resource_name),
                   html: { class: "form-horizontal center"} do |f| %>
       <%= current_user.email %>
     <div class="form-group">
@@ -24,8 +24,9 @@
       <% if @validatable %>
         <p class="help-block"><%= @minimum_password_length %> characters minimum</p>
       <% end %>
-
-      <%= image_tag current_user.avatar.url if current_user.avatar.url.present? %>
+      <% if current_user.avatar? %>
+        <%= image_tag current_user.avatar_url (:thumb)%>
+      <% end %>
       <%= f.file_field :avatar%>
 
       <div class="actions">

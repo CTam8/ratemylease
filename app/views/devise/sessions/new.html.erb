@@ -1,18 +1,19 @@
 <% provide(:title, "Log In") %>
 <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.6/css/font-awesome.min.css" />
-<link href='http://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'/>
+<link rel="stylesheet" ref="registration.scss"/>
 
 <!DOCTYPE html>
 <html>
-
+<body>
 <div class="container">
     <%= form_for resource, as: resource_name, url: session_path(resource_name),
                   html: { class: "form-horizontal center"} do |f| %>
 
-      <br />
-      <br />
+      <br/>
+      <br/>
 
-      <h2>Log In To Rate My Lease</h2>
+      <h6>Log In To RML</h6>
       <br />
 
         <%= link_to user_facebook_omniauth_authorize_path, :class => "btn buttonTextColorWhite" do %>
@@ -47,6 +48,7 @@
     <p> New User? &nbsp <%= link_to "Create New Account", new_user_registration_path, :class=>"newUser" %> </p>
 
 </div>
+</body>
 </html>
 <!-- <%= link_to user_google_oauth2_omniauth_authorize_path do %>
   <span class="icon"><i class="fa fa-google-plus"></i></span> <span class="icon_title">| Continue with Google Plus</span> </a>
