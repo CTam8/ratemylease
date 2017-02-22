@@ -1,9 +1,12 @@
 <% provide(:title, "Profile") %>
+<link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" />
 
 <h3>Profile</h3>
 <h4>
-  Hello
-  <%= image_tag @users.avatar_url if @users.avatar?%>
-<%= "#{current_user.first_name} #{current_user.last_name[0]}" %>.
+  <div class="container">
 
+    Hello
+    <%= image_tag @users.avatar_url if @users.avatar?%>
+    <%= "#{current_user.first_name} #{current_user.last_name[0]}" %>.
+ </div>
 </h4>
