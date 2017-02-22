@@ -6,15 +6,12 @@
 <!DOCTYPE html>
 <html>
 <body>
-<div class="container">
+<div class="container" id="LoginBorder">
     <%= form_for resource, as: resource_name, url: session_path(resource_name),
                   html: { class: "form-horizontal center"} do |f| %>
-
-      <br/>
-      <br/>
-
-      <h6>Log In To RML</h6>
-      <br />
+      <br><br><br><br>
+      <h6>Log in to RML</h6>
+      <br>
 
         <%= link_to user_facebook_omniauth_authorize_path, :class => "btn buttonTextColorWhite" do %>
         <span class="icon"><i class="fa fa-facebook-square"></i></span> <span class="icon_title">| Log In With Facebook</span>
@@ -46,7 +43,6 @@
     <% end %>
     <br />
     <p> New User? &nbsp <%= link_to "Create New Account", new_user_registration_path, :class=>"newUser" %> </p>
-
 </div>
 </body>
 </html>

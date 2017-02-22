@@ -1,5 +1,5 @@
 h5{
-  font-size: 25pt;
+  font-size: 23pt;
   text-align: center;
 }
 
@@ -12,4 +12,32 @@ body{
   background-image: url("http://skidmoreinc.com/wp-content/uploads/2013/08/HouseFaded11.png");
   background-repeat: no-repeat;
   background-size: cover;
+}
+
+#RegistrationBorder{
+  width:125%;
+  margin-left: -40px;
+  padding-left: 75px;
+  padding-right: 75px;
+  border-width: thin;
+  border-style: solid;
+  border-color:black;
+  height:600px;
+  border-radius: 25px;
+  background:white;
+
+}
+
+#LoginBorder{
+    text-align: center;
+    width:125%;
+    margin-left: -40px;
+    padding-right: 65px;
+    padding-left: 65px;
+    border-width: thin;
+    border-style: solid;
+    border-color:black;
+    height:500px;
+    border-radius: 25px;
+    background:white;
 }
