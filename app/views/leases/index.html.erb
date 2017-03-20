@@ -12,23 +12,36 @@
       <div id='map-canvas'>
         <div class="top-search-bar">
           <!-- <div class="filter-box"> -->
-            <select id="numberDropdown" class="dropdown" onchange="numberofbathroomsFilter()">
-              <option selected value="All">Any</option>
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
-              <option value="4">4</option>
-              <option value="5">5</option>
-              <option value="6">6</option>
-              <option value="7">7</option>
-              <option value="8">8</option>
-              <option value="9">9</option>
-              <option value="10">10</option>
-            </select>
-            <label class="checkbox-inline content"><input type="checkbox" onchange="utilFilter()" value="">Utilities</label>
-            <label class="checkbox-inline content"><input type="checkbox" onchange="internetFilter()">Internet</label>
-            <label class="checkbox-inline content"><input type="checkbox" onchange="laundryFilter()">Laundry</label>
-            <label class="checkbox-inline content"><input type="checkbox" onchange="furnishedFilter()">Furnished</label>
+          <select id="numberbathroomsDropdown" class="dropdown" onchange="filter()">
+            <option selected value="All">Any</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+          </select>
+          <!-- <select id="numberbedroomsDropdown" class="dropdown" onchange="numberofbedroomsFilter()">
+            <option selected value="All">Any</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+            <option value="9">9</option>
+            <option value="10">10</option>
+          </select> -->
+          <label class="checkbox-inline content"><input type="checkbox" id="utilitiesFilter" onclick="filter()">Utilities</label>
+          <label class="checkbox-inline content"><input type="checkbox" id="internetFilter" onclick="filter()">Internet</label>
+          <label class="checkbox-inline content"><input type="checkbox" id="laundryFilter" onclick="filter()">Laundry</label>
+          <label class="checkbox-inline content"><input type="checkbox" id="furnishedFilter" onclick="filter()">Furnished</label>
 
           <!-- <button type="button" class="btn btn-default col-sm-2"">Utilities</button>
           <button type="button" class="btn btn-default col-sm-2" onclick="internetFilter()">Internet</button>
@@ -43,10 +56,17 @@
 
 
     <script type="text/javascript">
-    var markersArray = [];
+    var markersArray = []; //Array of lease markers
+    var markersArrayID = []; //Array of all lease IDs
+    var utilities = <%=raw @utilities %> //Array of leases with utilities
+    var internet = <%=raw @internet %> //Array of leases with utilities
+    var laundry = <%=raw @laundry %> //Array of leases with utilities
+    var furnished = <%=raw @furnished %>//Array of leases with utilities
+
 
     function initAutocomplete() {
       var locations = <%=raw @markers %>
+
       var centerofmap = [43.6532, -79.3672643];
     	var latlang = new google.maps.LatLng(centerofmap[0], centerofmap[1]);
     	var map = new google.maps.Map(document.getElementById('map'), {
@@ -114,132 +134,114 @@
           numberofparkingspots: locations[i][12], //checks if the marker has utilities (attempting for filtering)
           typeOfHouse: locations[i][13], //checks if the marker has utilities (attempting for filtering)
           university: locations[i][14], //checks if the marker has utilities (attempting for filtering)
-
+          id: locations[i][15],
         });
 
         google.maps.event.addListener(marker, 'click', (function(marker, i) {
           return function() {
-            infowindow.setContent('<div class="markerInfoWindow";>' + locations[i][0] + "<br />" + locations[i][3] + ", " + locations[i][4] + "<br />" + locations[i][5] + "<br />" + locations[i][15]);
+            infowindow.setContent('<div class="markerInfoWindow";>' + locations[i][0] + "<br />" + locations[i][3] + ", " + locations[i][4] + "<br />" + locations[i][5] + "<br />" + locations[i][16]);
             infowindow.open(map, marker);
           }
         })(marker, i));
 
         markersArray.push(marker);
-      }
-    }
-
-    function utilFilter() {
-      // markersArray[marker]
-      for (marker in markersArray) {
-
-        if (markersArray[marker].utilities == true)
-        {
-          markersArray[marker].setVisible(true)
-        }
-        else {
-          // console.log(markersArray[marker].utilities == "true")
-
-          markersArray[marker].setVisible(false)
-        }
-        // console.log(markersArray[marker]);
+        markersArrayID.push(marker.id);
 
       }
     }
+    function filter() {
+      //get value of filters
+      var bathroomsCheck = document.getElementById('numberbathroomsDropdown').value
+      var utilitiesCheck = document.getElementById('utilitiesFilter').checked;
+      var internetCheck = document.getElementById('internetFilter').checked;
+      var laundryCheck = document.getElementById('laundryFilter').checked;
+      var furnishedCheck = document.getElementById('furnishedFilter').checked;
+      var checkboxArray = [markersArrayID]; //array of arrays based on filters
 
-    function internetFilter() {
-      // console.log(markersArray[marker]);
-      for (marker in markersArray) {
-        if (markersArray[marker].internet == true)
-        {
-          markersArray[marker].setVisible(true)
-        }
-        else {
-          markersArray[marker].setVisible(false)
-        }
+      if (utilitiesCheck == true) {
+        checkboxArray.push(utilities);
       }
-    }
-
-    function laundryFilter() {
-      // console.log(markersArray[marker]);
-      for (marker in markersArray) {
-        if (markersArray[marker].laundry == true)
-        {
-          markersArray[marker].setVisible(true)
-        }
-        else {
-          markersArray[marker].setVisible(false)
-        }
+      else {
       }
-    }
 
-    function furnishedFilter() {
-      // console.log(markersArray[marker]);
-      for (marker in markersArray) {
-        if (markersArray[marker].furnished == true)
-        {
-          markersArray[marker].setVisible(true)
-        }
-        else {
-          markersArray[marker].setVisible(false)
-        }
+      if (internetCheck == true) {
+        checkboxArray.push(internet);
       }
-    }
-
-    function numberofbathroomsFilter() {
-      // console.log(markersArray[marker]);
-      myVar = document.getElementById('numberDropdown').value
-      for (marker in markersArray) {
-        if (myVar == 'All') {
-          markersArray[marker].setVisible(true)
-        }
-        else {
-          if(markersArray[marker].numberofbathrooms == myVar)
-          {
-            markersArray[marker].setVisible(true)
-          }
-          else {
-            markersArray[marker].setVisible(false)
-          }
-        }
+      else {
       }
-    }
 
-    // Function to send markers and view attributes to console
-    function markerProperties() {
-      // for (marker in markersArray) {
-      //   console.log(markersArray[marker])
-      // }
+      if (laundryCheck == true) {
+        checkboxArray.push(laundry);
+      }
+      else {
+      }
 
-    }
+      if (furnishedCheck == true) {
+        checkboxArray.push(furnished);
+      }
+      else {
+      }
 
-    // var select = '';
-    // for (i=1;i<=10;i++){
-    //     select += '<option val=' + i + '>' + i + '</option>';
-    // }
-    // $('#numberDropdown').html(select);
-
-    </script>
-
-    <!-- <script>
-      (function($){
-        $('.review-rating').raty({
-          readOnly: true,
-          score: function() {
-            return $(this).attr('data-score');
-          },
-          path: '/assets'
-        });
-        })(jQuery);
-
-        (function($){
-          $('.average-review-rating').raty({
-            readOnly: true,
-            path: '/assets',
-            score: function() {
-              return $(this).attr('data-score')
+      function getCommonElements(arrays){ //Find elements that are common in arrays
+        var currentValues = {};
+        var commonValues = {};
+        for (var i = arrays[0].length-1; i >=0; i--){
+          currentValues[arrays[0][i]] = 1;
+        }
+        for (var i = arrays.length-1; i>0; i--){
+          var currentArray = arrays[i];
+          for (var j = currentArray.length-1; j >=0; j--){
+            if (currentArray[j] in currentValues){
+              commonValues[currentArray[j]] = 1;
             }
-          });
-        })(jQuery);
-    </script> -->
+          }
+          currentValues = commonValues;
+          commonValues = {};
+        }
+        return Object.keys(currentValues).map(function(value){
+          return parseInt(value);
+        });
+      }
+
+      function diffArray(arr1, arr2) { // Find elements that are uncommon between both arrays
+         var set1 = new Set(arr1);
+         var set2 = new Set(arr2);
+
+         var arr = []
+
+         set1.forEach(function(val) {
+           if (!set2.has(val)) arr.push(val);
+         });
+         set2.forEach(function(val) {
+           if (!set1.has(val)) arr.push(val);
+         });
+
+         return arr;
+      }
+
+      var mapmarkers = getCommonElements(checkboxArray); //AND all the arrays in checkboxArray to find elements that satisfy all conditions
+      var removeMarkerIDs = diffArray(markersArrayID,mapmarkers); //Find all markers that need to be removed
+
+      for (i = 0; i< removeMarkerIDs.length; i++){ //hide markers when filter is entered
+        if (removeMarkerIDs[i] in markersArrayID != null) {
+           markersArray[removeMarkerIDs[i]-1].setVisible(false)
+        }
+        else {
+        }
+      }
+
+      for (i = 0; i< mapmarkers.length; i++){ //show markers when filter is unchecked
+        if (mapmarkers[i] in markersArrayID != null) {
+           markersArray[mapmarkers[i]-1].setVisible(true)
+        }
+        else {
+        }
+      }
+      // console.log(removeMarkerIDs)
+      // console.log(markersArrayID)
+      // console.log(mapmarkers)
+
+    }
+    </script>
   </body>
 </html>
