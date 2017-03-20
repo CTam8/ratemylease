@@ -7,14 +7,56 @@ html, body {
 
 #map {
   height: 100%;
+  width: 100%;
+  border-top: 1px solid;
+  border-color: grey;
 }
 #map-canvas{
-    position: absolute;
-    top: 50px;
-    left: 0;
-    bottom: 0;
-    right: 0;
+  position: absolute;
+  top: 50px;
+  left: 0;
+  bottom: 30px;
+  right: 0;
+
 }
+
+  .top-search-bar {
+    height: 30px;
+    width: 100%;
+  }
+
+input{
+  height: 100%;
+  float:left;
+}
+.content {
+  width: 100px;
+  border-right: 1px solid;
+  text-align: center;
+  height: 100%;
+  padding: 5px;
+}
+.dropdown {
+  border-radius: 0px;
+  width: 150px;
+  height: 100%;
+
+
+}
+  .filterspacing {
+    width: 10%;
+  }
+p {
+  margin: 0;
+}
+
+
+  .filter-box {
+    width: 20%;
+    height: 30px;
+    border-right: 1px solid;
+    text-align: center;
+  }
 
   .controls {
     margin-top: 12px;
@@ -34,7 +76,7 @@ html, body {
     font-size: 15px;
     font-weight: 300;
     color: black;
-    margin-left: 11px;
+    margin-left: 10px;
     margin-top: 16px;
     padding: 0 11px 0 13px;
     text-overflow: ellipsis;
@@ -81,12 +123,6 @@ html, body {
     display: none;
   }
 
-  // .container {
-  //   display: flex;
-  // }
-  // .container > div {
-  //   flex: 1; /*grow*/
-  // }
 
   .checkbox {
     display: inline-block;

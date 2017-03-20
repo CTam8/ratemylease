@@ -79,6 +79,8 @@ GEM
       railties (>= 4.1.0, < 5.1)
       responders
       warden (~> 1.2.3)
+    dropzonejs-rails (0.7.3)
+      rails (> 3.1)
     elasticsearch (2.0.0)
       elasticsearch-api (= 2.0.0)
       elasticsearch-transport (= 2.0.0)
@@ -365,6 +367,7 @@ DEPENDENCIES
   carrierwave (= 0.11.2)
   coffee-rails (= 4.2.1)
   devise
+  dropzonejs-rails
   faker (= 1.4.2)
   fog (= 1.26.0)
   geocoder

@@ -7,13 +7,32 @@ class LeasesController < ApplicationController
 
     @markers = @leases.collect do |lease|
       @id = view_context.link_to "Go To Lease", lease_path(lease.id)
-        [lease.address.to_s, lease.latitude.to_f, lease.longitude.to_f, lease.city.to_s, lease.province.to_s, lease.postalcode.to_s, lease.utilities.to_s, @id]
+      [lease.address.to_s, lease.latitude.to_f, lease.longitude.to_f, lease.city.to_s, lease.province.to_s, lease.postalcode.to_s, lease.utilities, lease.internet, lease.laundry, lease.furnished, lease.numberofbathrooms, lease.numberofbedrooms, lease.numberofparkingspots, lease.typeOfHouse, lease.university,lease.id, @id]
     end
 
-    @center = Geocoder::Calculations.geographic_center(
-        @leases.collect do |lease|
-        [lease.latitude.to_f, lease.longitude.to_f]
-      end)
+    @leaseutilities = @leases.select {|lease| lease.utilities == true}
+
+    @utilities = @leaseutilities.collect do |lease|
+      [lease.id]
+    end
+
+    @leaseinternet = @leases.select {|lease| lease.internet == true}
+
+    @internet = @leaseinternet.collect do |lease|
+      [lease.id]
+    end
+
+    @leaselaundry = @leases.select {|lease| lease.laundry == true}
+
+    @laundry = @leaselaundry.collect do |lease|
+      [lease.id]
+    end
+
+    @leasefurnished = @leases.select {|lease| lease.furnished == true}
+
+    @furnished = @leasefurnished.collect do |lease|
+      [lease.id]
+    end
 
   end
 
@@ -42,8 +61,6 @@ class LeasesController < ApplicationController
     else
       @avg_rating = @lease.reviews.average(:rating).round(2)
     end
-
-
 
     render :layout => "leaseShowPageLayout"
 
@@ -84,6 +101,6 @@ private
 
   def lease_params
     params.require(:lease).permit(:address, :province, :city, :university, :postalcode, :numberofbedrooms,
-                  :numberofparkingspots, :numberofbathrooms, :utilities, :internet, :image)
+                :numberofparkingspots, :numberofbathrooms, :utilities, :internet, :laundry, :typeOfHouse, :furnished, image: [])
   end
 end

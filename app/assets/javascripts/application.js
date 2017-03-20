@@ -19,6 +19,7 @@
 // = require bootstrap-sprockets
 // = require underscore
 // = require gmaps/google
+// = require dropzone
 
 
 // var $j = jQuery.noConflict();

@@ -29,7 +29,9 @@
 			<%= f.select :province, Lease::PROVINCE, :include_blank => true, :required => false, error: false, input_html: { class: "has-error" }%>
 
 			<%= f.input :city, error: false, :required => false  %>
-			<%= f.input :university, error: false, :required => false  %>
+
+			<%= f.input :university, error: false, :required => false, label: "University/College"  %>
+
 			<%= f.input :postalcode, label: "Postal Code (Optional)" , error: false %>
 
 			<%= f.label :typeOfHouse, "Type of House" %>
@@ -65,7 +67,7 @@
 				<%= f.input :furnished, as: :radio_buttons %>
 				</div>
 
-			<%= f.file_field :image%>
+			<!-- <%= f.file_field :image, multiple: true%> -->
 
 			<%= f.button :submit, :class=>"createbtn" %>
 
