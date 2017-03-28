@@ -34,6 +34,11 @@ class LeasesController < ApplicationController
       [lease.id]
     end
 
+    # @leasebathrooms = @lease.select {|lease| lease.numberofbathrooms == params[:numberbathroomsDropdown]}
+    #
+    # @bathrooms = @leasebathrooms.collect do |lease|
+    #   [lease.id]
+    # end
   end
 
   def new
