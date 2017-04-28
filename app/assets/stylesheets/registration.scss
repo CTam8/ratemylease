@@ -1,5 +1,5 @@
 h5{
-  font-size: 23pt;
+  font-size: 21pt;
   text-align: center;
 }
 
@@ -9,16 +9,37 @@ h6{
 }
 
 .back{
-  background-image: url("https://skidmoreinc.com/wp-content/uploads/2013/08/HouseFaded11.png");
+  background-image: url("http://skidmoreinc.com/wp-content/uploads/2013/08/HouseFaded11.png");
+  //background-image: url("http://skidmoreinc.com/wp-content/uploads/2013/08/HouseFaded11.png");
   background-repeat: no-repeat;
   background-size: cover;
 }
 
+.field{
+  margin: auto;
+  position: relative;
+  width: 70%;
+}
+.fieldSize{
+  margin: auto;
+  position: relative;
+  height: 15pt;
+  width: 70%;
+}
+
+.UpdateBtn{
+  margin: auto;
+  position: relative;
+  height: 20pt;
+  width: 70%;
+  border-radius: 10pt;
+}
+
 #RegistrationBorder{
   width:125%;
-  margin-left: -40px;
-  padding-left: 75px;
-  padding-right: 75px;
+  margin-left:-45px;
+  padding-left: 75pt;
+  padding-right: 55pt;
   border-width: thin;
   border-style: solid;
   border-color:black;
@@ -28,10 +49,24 @@ h6{
 
 }
 
+#UpdateBorder{
+  width:125%;
+  margin-left:-50px;
+  padding-left: 70px;
+  padding-right: 40px;
+  border-width: thin;
+  border-style: solid;
+  border-color:black;
+  height:650px;
+  border-radius: 25px;
+  background:white;
+
+}
+
 #LoginBorder{
     text-align: center;
     width:125%;
-    margin-left: -40px;
+    margin-left:-55px;
     padding-right: 65px;
     padding-left: 65px;
     border-width: thin;
