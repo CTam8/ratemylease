@@ -1,12 +1,17 @@
-<br />
-<br />
-<br />
-<br />
+<!DOCTYPE html>
+<html>
+  <body>
+    <br />
+    <br />
+    <br />
+    <br />
 
-<h1>Edit Review</h1>
+    <h1>Edit Review</h1>
 
-<%= simple_form_for ([@lease, @review]) do |f| %>
-  <%= f.input :rating %>
-  <%= f.input :comment %>
-  <%= f.button :submit %>
-<% end %>
+    <%= simple_form_for ([@lease, @review]) do |f| %>
+      <%= f.input :rating %>
+      <%= f.input :comment %>
+      <%= f.button :submit %>
+    <% end %>
+  </body>
+</html>
