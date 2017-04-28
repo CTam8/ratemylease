@@ -8,7 +8,6 @@
 		<title> <%= full_title(yield(:title)) %> | New Lease </title>
 	</head>
 	<body>
-		<h2> Create a Lease </h2>
 			<%= simple_form_for @lease, :html => { :class => 'well center-block' }, url: leases_path do |f| %>
 			<% if @lease.errors.any? %>
 				<div id="error_explanation">
@@ -22,54 +21,66 @@
 					</ul>
 				</div>
 			<% end %>
+			<h2> Create a Lease </h2>
+			<div class= "container centered">
+				<div class="row">
+					<div class = "col-md-6 centered">
 
-			<%= f.input :address , error: false, :required => false %>
+						<%= f.input :address , error: false, :required => false %>
 
-			<%= f.label :province, "Province" %>
-			<%= f.select :province, Lease::PROVINCE, :include_blank => true, :required => false, error: false, input_html: { class: "has-error" }%>
+						<%= f.label :province, "Province" %>
+						<%= f.select :province,Lease::PROVINCE, :include_blank => true, :required => false, error: false, input_html: { class: "has-error" }%>
 
-			<%= f.input :city, error: false, :required => false  %>
+						<%= f.input :city, error: false, :required => false  %>
+					</div>
+					<div class = "col-md-6">
+						<%= f.input :university, error: false, :required => false, label: "University/College"  %>
 
-			<%= f.input :university, error: false, :required => false, label: "University/College"  %>
+						<%= f.input :postalcode, label: "Postal Code (Optional)" , error: false %>
 
-			<%= f.input :postalcode, label: "Postal Code (Optional)" , error: false %>
-
-			<%= f.label :typeOfHouse, "Type of House" %>
-			<%= f.select :typeOfHouse, Lease::TYPE, :include_blank => true, :required => false, error: false, input_html: { class: "has-error" }%>
-
-				<div class="numberDiv center-block">
-					<%= f.label :numberofbathrooms, "# of Bathrooms" %>
-					<%= f.select :numberofbathrooms, 1..10, error: false, :required => false, :include_blank => true %>
+						<%= f.label :typeOfHouse, "Type of House" %>
+						<%= f.select :typeOfHouse, Lease::TYPE, :include_blank => true, :required => false, error: false, input_html: { class: "has-error" }%>
+					</div>
 				</div>
-				<div class="numberDiv center-block">
-					<%= f.label :numberofbathrooms, "# of Bedrooms" %>
-					<%= f.select :numberofbedrooms, 1..10, error: false, :required => false,  :include_blank => true %>
-				</div>
+				<div class= "row">
+							<div class="numberDiv center-block">
+								<%= f.label :numberofbathrooms, "# of Bathrooms" %>
+								<%= f.select :numberofbathrooms, 1..10, error: false, :required => false, :include_blank => true %>
+							</div>
+							<div class="numberDiv center-block">
+								<%= f.label :numberofbathrooms, "# of Bedrooms" %>
+								<%= f.select :numberofbedrooms, 1..10, error: false, :required => false,  :include_blank => true %>
+							</div>
 
-				<div class="numberDiv center-block">
-					<%= f.label :numberofparkingspots, "# of Parking Spots" %>
-					<%= f.select :numberofparkingspots, 0..10, :selected => "0"%>
+							<div class="numberDiv center-block">
+								<%= f.label :numberofparkingspots, "Parking Spots" %>
+								<%= f.select :numberofparkingspots, 0..10, :selected => "0"%>
+							</div>
 				</div>
+				<div class="row">
 
-				<div class="checkbox">
-				<%= f.input :utilities, as: :radio_buttons%>
+							<div class="checkbox">
+							<%= f.input :utilities, as: :radio_buttons%>
+							</div>
+
+							<div class="checkbox">
+							<%= f.input :internet, as: :radio_buttons %>
+							</div>
+
+							<div class="checkbox">
+							<%= f.input :laundry, as: :radio_buttons %>
+							</div>
+
+							<div class="checkbox">
+							<%= f.input :furnished, as: :radio_buttons %>
+							</div>
 				</div>
-
-				<div class="checkbox">
-				<%= f.input :internet, as: :radio_buttons %>
+				<div class="row centered">
+					<%= f.button :submit, :class=>"createbtn" %>
 				</div>
-
-				<div class="checkbox">
-				<%= f.input :laundry, as: :radio_buttons %>
-				</div>
-
-				<div class="checkbox">
-				<%= f.input :furnished, as: :radio_buttons %>
-				</div>
-
 			<!-- <%= f.file_field :image, multiple: true%> -->
+			</div>
 
-			<%= f.button :submit, :class=>"createbtn" %>
 
 			<% end %>
 
