@@ -1,5 +1,5 @@
 = Rate My Lease
-Ratings and reviews site for student housing. Project is no longer being developed but was a fantastic learning experience.
+Ratings and reviews site for student housing. Project is no longer being developed.
 
 Built By: Christian Tam & Michael Lam
 
